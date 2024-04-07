@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Version>1.0.0-x019</Version>
+        <Authors>UltraV10lence</Authors>
+        <Title>UltoLibraryNew Databases</Title>
+        <PackageIcon>ultolib-dbs.png</PackageIcon>
+        <LangVersion>12</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\UltoLibraryNew\UltoLibraryNew.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="..\ultolib-dbs.png">
+        <Pack>True</Pack>
+        <PackagePath></PackagePath>
+        <Link>ultolib-dbs.png</Link>
+      </None>
+    </ItemGroup>
+
+</Project>

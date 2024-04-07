@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UltoLibraryNew", "UltoLibraryNew\UltoLibraryNew.csproj", "{87FC8B84-0CB9-480D-8F1D-EFAA8299F776}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UltoLibraryNew.Databases", "UltoLibraryNew.Databases\UltoLibraryNew.Databases.csproj", "{D383B4CB-95CA-4239-AE43-56A204548E14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UltoLibraryNew.Network", "UltoLibraryNew.Network\UltoLibraryNew.Network.csproj", "{30EDE071-4CAD-427C-978E-E4384B0B5935}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UltoLibraryNew.NeuralNetworks", "UltoLibraryNew.NeuralNetworks\UltoLibraryNew.NeuralNetworks.csproj", "{92FAA502-0F45-4533-918D-4117BF9304D2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{87FC8B84-0CB9-480D-8F1D-EFAA8299F776}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87FC8B84-0CB9-480D-8F1D-EFAA8299F776}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87FC8B84-0CB9-480D-8F1D-EFAA8299F776}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87FC8B84-0CB9-480D-8F1D-EFAA8299F776}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D383B4CB-95CA-4239-AE43-56A204548E14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D383B4CB-95CA-4239-AE43-56A204548E14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D383B4CB-95CA-4239-AE43-56A204548E14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D383B4CB-95CA-4239-AE43-56A204548E14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30EDE071-4CAD-427C-978E-E4384B0B5935}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30EDE071-4CAD-427C-978E-E4384B0B5935}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30EDE071-4CAD-427C-978E-E4384B0B5935}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30EDE071-4CAD-427C-978E-E4384B0B5935}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92FAA502-0F45-4533-918D-4117BF9304D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92FAA502-0F45-4533-918D-4117BF9304D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92FAA502-0F45-4533-918D-4117BF9304D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92FAA502-0F45-4533-918D-4117BF9304D2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
