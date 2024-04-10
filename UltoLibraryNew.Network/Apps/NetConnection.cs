@@ -16,9 +16,10 @@ public abstract class NetConnection {
     public readonly int RemotePort;
 
     public UnknownChannelPolitics GotDataToUnknownChannel = UnknownChannelPolitics.Skip;
-    
-    internal TaskCompletionSource CloseSource = new ();
+
+    internal TaskCompletionSource CloseSource = new(), SendSource = new();
     public Task CloseTask => CloseSource.Task;
+    internal Task SendTask => SendSource.Task;
 
     public PacketReceiver PacketReceiver;
 
@@ -75,4 +76,5 @@ public abstract class NetConnection {
     public abstract void RegisterPacketListener(NetChannel channel, Func<NetChannel, ByteBuf, PacketAction> listener);
     
     public abstract void Disconnect(DisconnectReason reason);
+    public abstract void TriggerPacketsSend();
 }

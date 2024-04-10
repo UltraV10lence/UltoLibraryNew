@@ -21,6 +21,8 @@ public class NetChannel(NetConnection boundTo, string channelName) {
         if (read < data.Length) data = UltoBytes.SubArray(data, 0, read);
         
         sendBuffer = UltoBytes.AppendArrays(sendBuffer, BitConverter.GetBytes((short) data.Length), data);
+        
+        BoundTo.SendSource.TrySetResult();
     }
 
     public void Close() {

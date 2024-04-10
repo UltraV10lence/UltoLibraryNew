@@ -18,7 +18,7 @@ public class TcpNetServer(string ip, int port) : NetServer(ip, port) {
 
                 while (!CloseTask.IsCompleted) {
                     try {
-                        var client = listener.AcceptTcpClient();
+                        var client = listener.AcceptTcpClientAsync().GetAwaiter().GetResult();
                         var ep = (IPEndPoint)client.Client.RemoteEndPoint!;
 
                         var connection = new ServerConnection(ep.Address.ToString(), ep.Port, this, client);
@@ -114,50 +114,61 @@ public class TcpNetServer(string ip, int port) : NetServer(ip, port) {
                 Disconnect(DisconnectReason.Timeout);
             };
             
-            PacketsLoop();
-            
+            PacketsTask();
+
             Task.Run(() => {
-                while (!CloseTask.IsCompleted) TriggerPacketsSend();
+                while (!CloseTask.IsCompleted) {
+                    SendTask.Wait();
+                    TriggerPacketsSend();
+                    SendSource = new TaskCompletionSource();
+                }
             });
         }
 
-        public void TriggerPacketsSend() {
-            if (RemoteRaw == null) return;
-            try {
-                stream ??= RemoteRaw.GetStream();
-
-                foreach (var c in channels.Values) {
-                    var data = c.GetNextNamedSlice();
-                    if (data == null) continue;
-                    stream.Write(data);
-                }
-            } catch { }
-        }
-        
-        private NetworkStream? stream;
-        private async void PacketsLoop() {
+        private async void PacketsTask() {
             await Task.Run(() => {
                 var buf = new byte[1024];
 
-                try {
-                    while (!CloseTask.IsCompleted) {
+                while (!CloseTask.IsCompleted) {
+                    try {
                         stream ??= RemoteRaw!.GetStream();
-                        var length = stream.Read(buf);
+                        var length = stream.ReadAsync(buf).AsTask().GetAwaiter().GetResult();
                         if (length == 0) continue;
-                        
+                
                         var got = length == buf.Length ? buf : UltoBytes.SubArray(buf, 0, length);
-                        
+                
                         try {
                             PacketReceiver.AddData(got);
                         } catch (Exception e) {
                             Exception(e);
                         }
+                    } catch {
+                        Disconnect(DisconnectReason.Disconnect);
                     }
-                } catch {
-                    Disconnect(DisconnectReason.Disconnect);
                 }
             });
         }
+
+        public override void TriggerPacketsSend() {
+            if (RemoteRaw == null) return;
+            try {
+                stream ??= RemoteRaw.GetStream();
+                var stop = false;
+
+                while (!stop) {
+                    stop = true;
+                    
+                    foreach (var c in channels.Values) {
+                        var data = c.GetNextNamedSlice();
+                        if (data == null) continue;
+                        stream.Write(data);
+                        stop = false;
+                    }
+                }
+            } catch { }
+        }
+        
+        private NetworkStream? stream;
 
         public override NetChannel OpenChannel(string name) {
             if (HasChannel(name)) return channels[name];

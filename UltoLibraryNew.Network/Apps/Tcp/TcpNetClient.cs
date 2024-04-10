@@ -50,12 +50,20 @@ public class TcpNetClient(string remoteIp, int remotePort) : NetConnection(remot
                 loginTimeout.Start();
                 
                 LoginChannel.Send(new ByteBuf());
+
+                Task.Run(() => {
+                    while (!CloseTask.IsCompleted) {
+                        SendTask.Wait();
+                        TriggerPacketsSend();
+                        SendSource = new TaskCompletionSource();
+                    }
+                });
                 
                 try {
                     var buf = new byte[1024];
                     while (!CloseTask.IsCompleted) {
                         stream ??= RemoteRaw.GetStream();
-                        var length = stream.Read(buf);
+                        var length = stream.ReadAsync(buf).AsTask().GetAwaiter().GetResult();
                         if (length == 0) continue;
                         
                         var got = length == buf.Length ? buf : UltoBytes.SubArray(buf, 0, length);
@@ -67,17 +75,12 @@ public class TcpNetClient(string remoteIp, int remotePort) : NetConnection(remot
                         }
                     }
                 } catch (Exception e) {
-                    Console.WriteLine(e);
                     Disconnect(DisconnectReason.Disconnect);
                 }
             } catch (Exception e) {
                 Exception(e);
                 Disconnect(DisconnectReason.Exception);
             }
-        });
-
-        Task.Run(() => {
-            while (!CloseTask.IsCompleted) TriggerPacketsSend();
         });
     }
 
@@ -106,15 +109,21 @@ public class TcpNetClient(string remoteIp, int remotePort) : NetConnection(remot
     }
 
     private NetworkStream? stream;
-    public void TriggerPacketsSend() {
+    public override void TriggerPacketsSend() {
         if (RemoteRaw == null) return;
         try {
             stream ??= RemoteRaw.GetStream();
+            var stop = false;
 
-            foreach (var c in channels.Values) {
-                var data = c.GetNextNamedSlice();
-                if (data == null) continue;
-                stream.Write(data);
+            while (!stop) {
+                stop = true;
+                    
+                foreach (var c in channels.Values) {
+                    var data = c.GetNextNamedSlice();
+                    if (data == null) continue;
+                    stream.Write(data);
+                    stop = false;
+                }
             }
         } catch { }
     }
