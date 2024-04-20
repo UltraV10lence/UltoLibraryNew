@@ -8,21 +8,26 @@ public class NetChannel(NetConnection boundTo, string channelName) {
     public readonly NetConnection BoundTo = boundTo;
     public readonly string ChannelName = channelName;
     
-    private byte[] packetBuffer = Array.Empty<byte>();
-    private byte[] sendBuffer = Array.Empty<byte>();
+    private byte[] packetBuffer = [];
+    private byte[] sendBuffer = [];
     internal readonly List<Func<NetChannel, ByteBuf, PacketAction>> OnPacket = [ ];
+
+    private readonly object rwLock = new();
 
     public void Send(ByteBuf buf) {
         buf.EnterReadMode();
-        if (buf.Stream.Length > Limits.MaxPacketBufferSize) throw new ArgumentException($"Buffer has too much data in it. ({buf.Stream.Length})");
+        
+        lock (rwLock) {
+            if (buf.Stream.Length > Limits.MaxPacketBufferSize) throw new ArgumentException($"Buffer has too much data in it. ({buf.Stream.Length})");
 
-        var data = new byte[buf.Stream.Length];
-        var read = buf.Stream.Read(data);
-        if (read < data.Length) data = UltoBytes.SubArray(data, 0, read);
+            var data = new byte[buf.Stream.Length];
+            var read = buf.Stream.Read(data);
+            if (read < data.Length) data = UltoBytes.SubArray(data, 0, read);
         
-        sendBuffer = UltoBytes.AppendArrays(sendBuffer, BitConverter.GetBytes((short) data.Length), data);
+            sendBuffer = UltoBytes.AppendArrays(sendBuffer, BitConverter.GetBytes((short) data.Length), data);
         
-        BoundTo.SendSource.TrySetResult();
+            BoundTo.SendSource.TrySetResult();
+        }
     }
 
     public void Close() {
@@ -78,21 +83,23 @@ public class NetChannel(NetConnection boundTo, string channelName) {
 
     private byte[]? cachedNameData;
     internal byte[]? GetNextNamedSlice() {
-        if (sendBuffer.Length == 0) return null;
+        lock (rwLock) {
+            if (sendBuffer.Length == 0) return null;
         
-        using var ms = new MemoryStream();
+            using var ms = new MemoryStream();
 
-        var nameData = cachedNameData ??= Encoding.UTF8.GetBytes(ChannelName);
+            var nameData = cachedNameData ??= Encoding.UTF8.GetBytes(ChannelName);
         
-        ms.WriteByte((byte) nameData.Length);
-        ms.Write(nameData);
+            ms.WriteByte((byte) nameData.Length);
+            ms.Write(nameData);
         
-        var data = sendBuffer.Length > 255 ? UltoBytes.SubArray(sendBuffer, 0, 255) : sendBuffer;
-        sendBuffer = UltoBytes.SubArray(sendBuffer, data.Length, sendBuffer.Length - data.Length);
+            var data = sendBuffer.Length > 255 ? UltoBytes.SubArray(sendBuffer, 0, 255) : sendBuffer;
+            sendBuffer = UltoBytes.SubArray(sendBuffer, data.Length, sendBuffer.Length - data.Length);
         
-        ms.WriteByte((byte) data.Length);
-        ms.Write(data);
+            ms.WriteByte((byte) data.Length);
+            ms.Write(data);
 
-        return ms.ToArray();
+            return ms.ToArray();
+        }
     }
 }

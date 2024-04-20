@@ -7,7 +7,7 @@
     <list default="true" id="16af22be-7473-4cf7-89ef-931931f4f2db" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UltoLibraryNew/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UltoLibraryNew/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/NetChannel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/NetChannel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/NetConnection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/NetConnection.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/Packets/PacketReceiver.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/Packets/PacketReceiver.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/Tcp/TcpNetClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/Tcp/TcpNetClient.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/Tcp/TcpNetServer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/Tcp/TcpNetServer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/UltoLibraryNew.Network.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/UltoLibraryNew.Network.csproj" afterDir="false" />
@@ -20,10 +20,53 @@
   <component name="CodyActiveAccount">
     <option name="activeAccountId" value="VXNlcjoxNzc5MzE=" />
   </component>
+  <component name="DpaMonitoringSettings">
+    <option name="autoShow" value="false" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/5535e31a712343a63f5d7d796cd874e563e5ac14/src/libraries/Common/src/System/SR.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/5535e31a712343a63f5d7d796cd874e563e5ac14/src/libraries/System.ComponentModel.Primitives/src/System/ComponentModel/Component.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/5535e31a712343a63f5d7d796cd874e563e5ac14/src/libraries/System.ComponentModel.TypeConverter/src/System/Timers/Timer.cs" root0="SKIP_HIGHLIGHTING" />
@@ -42,44 +85,8 @@
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/808851b07acfa1c5c94b0d4f9fb50debedb2df70/src/libraries/System.Net.Sockets/src/System/Net/Sockets/NetworkStream.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/808851b07acfa1c5c94b0d4f9fb50debedb2df70/src/libraries/System.Net.Sockets/src/System/Net/Sockets/TCPClient.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/808851b07acfa1c5c94b0d4f9fb50debedb2df70/src/libraries/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/Formatters/Binary/BinaryFormatter.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4e8a55ab98e246d2b06a8eb46eae5112508a0/2e/2d38805a/IFormatter.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2248b05bff6af81f9e7abf491a62f73f239648b7d3933b74efba951126145da/SerializableAttribute.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/235b8d206b56acfe04faeb04511585b156981556882336a9a49a871c0722e90/Type.CoreCLR.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/35e7e538796eca19115e7f3c2f459e1951ae177d47eb48ebbf393bff3ac/Select.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/36f346b6c0454bc8a6afa7aed38119fe5bbffcc983298d9bfa4dbd5f49461f/Monitor.CoreCLR.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/387238ef9c8f8c6b1dccf4dcba4eed0e459454919b2e4b9cad11a5071789df/Dictionary.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/40d5578098b697cc45dcf54d19b8d710ed41f2d90a6c25221c3eef6aa8f9/ObjectDisposedException.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/50c3e4a1e1125958a559a6477d86edad2a4c5faed9732a156c025266cd5cb93/PortableThreadPool.GateThread.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/511cf7818fa69510be33bc1a1a19a6ea30dee28779aa1177aaabe44f78e/RtFieldInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/52e87bea8e6cd4f0cb8cb9ce2cc3bb832abeb156f568f893f6a97b5573/IBinaryNumber.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/615eb7c92ecb77d717ec76a87561faf1d5fda2262bc661e2503f52f41120d9/Memory.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6879c9ed20391a5ccfea363be5964fbcfe4f1dfde9558aa84b36df6b6ec92c6/List.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6d8578f5b52e9466a7f88eff9cc18e85d4128d5517aa466b2daa9a1747f30/BinaryWriter.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6f90c6c13479b8c2a5be98f3d75dfc3bd885a055652d8a32904ca2448132949e/Future.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/74e4c72cd3922ed61496931f33baf4a9b5950edddb6b78bc296241285f25c3/TaskAwaiter.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/76a7b4387866adc31f9e317277cff4e5a723e96e76b52dd8afe066edf1abf9c3/Array.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/789e27cba9588f1571c230f9598f299a91666d8b5347a0338dc840e88a742980/BinaryWriter.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7ebd63def9f7d4712f2b21657fc91831af880b6463e58615e5866f11ed5f98/WaitHandle.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/889595c0c9f04f5199bbadadab8ed150b1d8a0/_14c09/IEnumerator.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/889595c0c9f04f5199bbadadab8ed150b1d8a0/_18b99/IEnumerator.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/889595c0c9f04f5199bbadadab8ed150b1d8a0/_3e513/ISerializable.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/889595c0c9f04f5199bbadadab8ed150b1d8a0/_49925/IConvertible.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/889595c0c9f04f5199bbadadab8ed150b1d8a0/_ec32c/IEnumerable.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8aa571921fa57173c2273dfb139675ff2d45de16cd4e3e51cfffda2cd47c5/Attribute.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8b59fa60d15ea79167bca4aee77af3ed6b93648c61b472b7a8381c62977ddfdb/Type.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/95fa18a2d2c33478b431f364c6f8cf3f4c8dc2e44ce1e35bcb8ec26224c56/ArgumentException.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b12ad9547e42ca3978b2148023a81a888a7874c1b210dc6def9fc0e7739e19/AsyncVoidMethodBuilder.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bd55fb26296f9ba7a688ddc8a1b7add6c71c28f1f4f0e4e4e4fad8bccf518ea6/Single.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c065e0637d45c1b992497bbf5fb112afaa41ac6cd7d6a131dbd235b272b847/IBinaryInteger.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c1392dcec8fbf06e88494e16d596717b5b19153ad1426cd1ab14675469194781/PropertyInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/cfbe9aa5b81e7cd15c13ed94fecef706cd5bc19cd724fa4d11f95454ff0/FieldInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/cfcfa3591cfe8e7d99db20c818f3316e394a8bffff43622336f3662fe8971e/Stream.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d3b35aba78af8938342254c9ab4da7b7362a691ccc71b3decaabd322fea44/Int32.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d7fd665bf3b3479e1b42d469191ce18f9a9fb07d6acfadb046c21534e1ef65e9/MemberInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e780e52e573e9765ad8b543dc8736eb42f6af6a9de6388327ec7ab69fe3c6/BinaryPrimitives.WriteLittleEndian.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2c8e7ca976f350cba9836d5565dac56b11e0b56656fa786460eb1395857a6fa/ThrowHelper.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f0d5842055c33862fb8e733d61c64dd5fe95a1f13d5a45db2e3b17b9ef0ac/MemoryStream.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f38387d84c798391deeef8c38c533e1d5f8d68918c85f480bdbf153c34414571/SerializationInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f9749fe3576a687c3c42f3794cefe8f8d91e62f939c66c0a32dbb3f74255/ManualResetEventSlim.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/UltoLibraryNew.Databases/Database.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/UltoLibraryNew.Network/Apps/ByteBuf.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/UltoLibraryNew.Network/Apps/NetChannel.cs" root0="FORCE_HIGHLIGHTING" />
@@ -98,44 +105,44 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Static Method.UltoLibraryNew.Databases.Test.Main.executor": "Run",
-    ".NET Static Method.UltoLibraryNew.Databases.Tests.Main.executor": "Run",
-    ".NET Static Method.UltoLibraryNew.Databases.test.Main.executor": "Run",
-    ".NET Static Method.UltoLibraryNew.Network.Client.Main.executor": "Run",
-    ".NET Static Method.UltoLibraryNew.Network.Entry.Client.executor": "Run",
-    ".NET Static Method.UltoLibraryNew.Network.Entry.Server.executor": "Run",
-    ".NET Static Method.UltoLibraryNew.Network.Server.Main.executor": "Run",
-    ".NET Static Method.UltoLibraryNew.Network.TestClient.Main.executor": "Run",
-    ".NET Static Method.UltoLibraryNew.Network.TestServer.Main.executor": "Run",
-    ".NET Static Method.UltoLibraryNew.Network.a.Main.executor": "Run",
-    ".NET Static Method.UltoLibraryNew.Network.a.MainS.executor": "Run",
-    ".NET Static Method.UltoLibraryNew.NeuralNetworks.Tests.Main.executor": "Run",
-    ".NET Static Method.UltoLibraryNew.Tests.Main.executor": "Run",
-    "Attach to Process.12380:dotnet.executor": "Debug",
-    "RunOnceActivity.CodyProjectSettingsMigration": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "deletionFromPopupRequiresConfirmation": "false",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.environmentSetup",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Static Method.UltoLibraryNew.Databases.Test.Main.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Static Method.UltoLibraryNew.Databases.Tests.Main.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Static Method.UltoLibraryNew.Databases.test.Main.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Static Method.UltoLibraryNew.Network.Client.Main.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Static Method.UltoLibraryNew.Network.Entry.Client.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Static Method.UltoLibraryNew.Network.Entry.Server.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Static Method.UltoLibraryNew.Network.Server.Main.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Static Method.UltoLibraryNew.Network.TestClient.Main.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Static Method.UltoLibraryNew.Network.TestServer.Main.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Static Method.UltoLibraryNew.Network.a.Main.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Static Method.UltoLibraryNew.Network.a.MainS.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Static Method.UltoLibraryNew.NeuralNetworks.Tests.Main.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Static Method.UltoLibraryNew.Tests.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Attach to Process.12380:dotnet.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.CodyProjectSettingsMigration&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.environmentSetup&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "C:\\Users\\ulto\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache",
-      "C:\\Users\\ulto\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache",
-      "C:\\Users\\ulto\\AppData\\Local\\Symbols\\src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\ulto\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\ulto\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\ulto\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -235,6 +242,11 @@
       <workItem from="1712498374798" duration="84000" />
       <workItem from="1712601673544" duration="1894000" />
       <workItem from="1712603603511" duration="3274000" />
+      <workItem from="1712743865498" duration="341000" />
+      <workItem from="1712749884866" duration="70000" />
+      <workItem from="1712750048615" duration="2417000" />
+      <workItem from="1712755381095" duration="5019000" />
+      <workItem from="1712766526342" duration="69000" />
     </task>
     <task id="LOCAL-00001" summary="aga">
       <option name="closed" value="true" />
@@ -244,17 +256,27 @@
       <option name="project" value="LOCAL" />
       <updated>1712494525976</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="probably final version?">
+      <option name="closed" value="true" />
+      <created>1712743988139</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1712743988139</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="aga" />
-    <option name="LAST_COMMIT_MESSAGE" value="aga" />
+    <MESSAGE value="probably final version?" />
+    <option name="LAST_COMMIT_MESSAGE" value="probably final version?" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
@@ -269,6 +291,8 @@
         <watch expression="encoder" />
         <watch expression="output" />
         <watch expression="nn" />
+        <watch expression="data" />
+        <watch expression="packetBuffer" />
       </configuration>
     </watches-manager>
   </component>

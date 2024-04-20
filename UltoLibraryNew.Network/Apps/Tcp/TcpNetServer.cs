@@ -91,13 +91,14 @@ public class TcpNetServer(string ip, int port) : NetServer(ip, port) {
                 return PacketAction.Skip;
             });
         
-            RegisterPacketListener(LoginChannel, (c, buf) => {
+            RegisterPacketListener(LoginChannel, (c, _) => {
                 c.Close();
                 PingTask.Start();
                 ReceivePing.Start();
                 LoginTimeout.Dispose();
                 LoginChannel.Send(new ByteBuf());
-                
+
+                IsAuthorized = true;
                 Connected();
                 return PacketAction.Skip;
             });
@@ -165,7 +166,10 @@ public class TcpNetServer(string ip, int port) : NetServer(ip, port) {
                         stop = false;
                     }
                 }
-            } catch { }
+            }
+            catch {
+                // ignored
+            }
         }
         
         private NetworkStream? stream;

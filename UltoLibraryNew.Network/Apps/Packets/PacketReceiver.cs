@@ -5,7 +5,7 @@ namespace UltoLibraryNew.Network.Apps.Packets;
 
 public class PacketReceiver(NetConnection boundTo) {
     public readonly NetConnection BoundTo = boundTo;
-    private byte[] packetBuffer = Array.Empty<byte>();
+    private byte[] packetBuffer = [];
 
     public void AddData(byte[] data) {
         if (packetBuffer.Length + data.Length > 2048) {

@@ -21,12 +21,13 @@ public class TcpNetClient(string remoteIp, int remotePort) : NetConnection(remot
             return PacketAction.Skip;
         });
         
-        RegisterPacketListener(LoginChannel, (c, buf) => {
+        RegisterPacketListener(LoginChannel, (c, _) => {
             c.Close();
             pingTask.Start();
             receivePing.Start();
             loginTimeout.Dispose();
             
+            IsAuthorized = true;
             Connected();
             return PacketAction.Skip;
         });
@@ -74,7 +75,7 @@ public class TcpNetClient(string remoteIp, int remotePort) : NetConnection(remot
                             Exception(e);
                         }
                     }
-                } catch (Exception e) {
+                } catch {
                     Disconnect(DisconnectReason.Disconnect);
                 }
             } catch (Exception e) {
@@ -117,7 +118,7 @@ public class TcpNetClient(string remoteIp, int remotePort) : NetConnection(remot
 
             while (!stop) {
                 stop = true;
-                    
+                
                 foreach (var c in channels.Values) {
                     var data = c.GetNextNamedSlice();
                     if (data == null) continue;
@@ -125,7 +126,9 @@ public class TcpNetClient(string remoteIp, int remotePort) : NetConnection(remot
                     stop = false;
                 }
             }
-        } catch { }
+        } catch {
+            // ignored
+        }
     }
 
     public override void Disconnect(DisconnectReason reason) {
