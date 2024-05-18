@@ -17,7 +17,6 @@ public class PacketReceiver(NetConnection boundTo) {
         using var reader = new MemoryStream(packetBuffer);
         reader.Seek(0, SeekOrigin.Begin);
 
-        skip:
         while (packetBuffer.Length - reader.Position > 0) {
             var channelNameLength = (byte) reader.ReadByte();
 
@@ -47,7 +46,7 @@ public class PacketReceiver(NetConnection boundTo) {
                 case UnknownChannelPolitics.CreateNew:
                     break;
                 case UnknownChannelPolitics.Skip:
-                    if (!BoundTo.HasChannel(channelName)) goto skip;
+                    if (!BoundTo.HasChannel(channelName)) continue;
                     break;
                 case UnknownChannelPolitics.Disconnect:
                     if (!BoundTo.HasChannel(channelName)) {

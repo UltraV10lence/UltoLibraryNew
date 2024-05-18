@@ -10,11 +10,16 @@ public class NetChannel(NetConnection boundTo, string channelName) {
     
     private byte[] packetBuffer = [];
     private byte[] sendBuffer = [];
-    internal readonly List<Func<NetChannel, ByteBuf, PacketAction>> OnPacket = [ ];
+    internal readonly List<Func<ByteBuf, PacketAction>> OnPacket = [];
 
     private readonly object rwLock = new();
 
     public void Send(ByteBuf buf) {
+        var a = false;
+        BoundTo.SecureConnection.Encrypt(buf);
+        if (a) {
+            throw new ArgumentException();
+        }
         buf.EnterReadMode();
         
         lock (rwLock) {
@@ -56,7 +61,10 @@ public class NetChannel(NetConnection boundTo, string channelName) {
             var packet = new byte[packetLength];
             reader.ReadExactly(packet);
 
-            ProcessPacket(new ByteBuf(packet));
+            var packetBuf = new ByteBuf(packet);
+            BoundTo.SecureConnection.Decrypt(packetBuf);
+
+            ProcessPacket(packetBuf);
         }
 
         packetBuffer = UltoBytes.SubArray(packetBuffer, (int) reader.Position, (int) (packetBuffer.Length - reader.Position));
@@ -65,7 +73,7 @@ public class NetChannel(NetConnection boundTo, string channelName) {
 
     private void ProcessPacket(ByteBuf packet) {
         foreach (var f in OnPacket) {
-            var process = f.Invoke(this, packet);
+            var process = f.Invoke(packet);
 
             switch (process) {
                 case PacketAction.MoveNext:
@@ -81,17 +89,15 @@ public class NetChannel(NetConnection boundTo, string channelName) {
         }
     }
 
-    private byte[]? cachedNameData;
+    private readonly byte[] cachedNameData = Encoding.UTF8.GetBytes(channelName);
     internal byte[]? GetNextNamedSlice() {
         lock (rwLock) {
             if (sendBuffer.Length == 0) return null;
         
             using var ms = new MemoryStream();
-
-            var nameData = cachedNameData ??= Encoding.UTF8.GetBytes(ChannelName);
         
-            ms.WriteByte((byte) nameData.Length);
-            ms.Write(nameData);
+            ms.WriteByte((byte) cachedNameData.Length);
+            ms.Write(cachedNameData);
         
             var data = sendBuffer.Length > 255 ? UltoBytes.SubArray(sendBuffer, 0, 255) : sendBuffer;
             sendBuffer = UltoBytes.SubArray(sendBuffer, data.Length, sendBuffer.Length - data.Length);

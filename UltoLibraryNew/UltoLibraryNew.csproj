@@ -4,7 +4,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>1.0.0-x007</Version>
+        <Version>1.0.0-x008</Version>
         <Title>UltoLibraryNew</Title>
         <Authors>UltraV10lence</Authors>
         <Copyright>idi nahoi</Copyright>

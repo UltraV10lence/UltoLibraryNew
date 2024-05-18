@@ -23,8 +23,10 @@ public abstract class NetConnection {
 
     public PacketReceiver PacketReceiver;
 
-    protected NetChannel PingChannel => OpenChannel("csPing");
-    protected NetChannel LoginChannel => OpenChannel("csLogin");
+    internal NetChannel PingChannel => OpenChannel("csPing");
+    internal NetChannel LoginChannel => OpenChannel("csLogin");
+
+    public readonly SecureConnection SecureConnection;
     
     protected NetConnection(string remoteIp, int remotePort, bool isServer) {
         OnException += _ => { };
@@ -34,6 +36,8 @@ public abstract class NetConnection {
         RemotePort = remotePort;
         IsServer = isServer;
         PacketReceiver = new PacketReceiver(this);
+        SecureConnection = new SecureConnection(this, isServer);
+        SecureConnection.Init();
     }
     
     internal void Connected() {
@@ -70,10 +74,10 @@ public abstract class NetConnection {
 
     public abstract int ChannelsCount();
 
-    public void RegisterPacketListener(string channelName, Func<NetChannel, ByteBuf, PacketAction> listener) {
+    public void RegisterPacketListener(string channelName, Func<ByteBuf, PacketAction> listener) {
         RegisterPacketListener(OpenChannel(channelName), listener);
     }
-    public abstract void RegisterPacketListener(NetChannel channel, Func<NetChannel, ByteBuf, PacketAction> listener);
+    public abstract void RegisterPacketListener(NetChannel channel, Func<ByteBuf, PacketAction> listener);
     
     public abstract void Disconnect(DisconnectReason reason);
     public abstract void TriggerPacketsSend();

@@ -23,14 +23,14 @@ public class HttpAccessControl {
     public (bool process, HttpStatusCode responseCode) Process(HttpNetRequest request, HttpNetResponse response) {
         foreach (var rule in Rules) {
             if (!Regex.IsMatch(request.LocalUrl, rule.Key)) continue;
-                
+            
             return (rule.Value.process, rule.Value.responseCode);
         }
 
         foreach (var rule in RulesList) {
             var result = rule(request, response);
             if (result.process == TriState.USE_DEFAULT) continue;
-                
+            
             return (result.process.ToBool(), result.responseCode);
         }
         

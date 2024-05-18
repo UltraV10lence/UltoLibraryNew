@@ -8,28 +8,17 @@ public class TcpNetClient(string remoteIp, int remotePort) : NetConnection(remot
     public TcpClient? RemoteRaw { get; internal set; }
     private readonly Dictionary<string, NetChannel> channels = new();
 
-    private readonly Timer receivePing = new(Limits.ToReceivePing);
-    private readonly Timer pingTask = new(Limits.ToSendPing);
-    private readonly Timer loginTimeout = new(Limits.ToAuthorize);
+    internal readonly Timer ReceivePing = new(Limits.ToReceivePing);
+    internal readonly Timer PingTask = new(Limits.ToSendPing);
+    internal readonly Timer LoginTimeout = new(Limits.ToAuthorize);
     
     public void Connect() {
         CloseSource = new TaskCompletionSource();
-        
-        RegisterPacketListener(PingChannel, (_, _) => {
-            receivePing.Stop();
-            receivePing.Start();
-            return PacketAction.Skip;
-        });
-        
-        RegisterPacketListener(LoginChannel, (c, _) => {
-            c.Close();
-            pingTask.Start();
-            receivePing.Start();
-            loginTimeout.Dispose();
-            
-            IsAuthorized = true;
-            Connected();
-            return PacketAction.Skip;
+
+        RegisterPacketListener(PingChannel, _ => {
+            ReceivePing.Stop();
+            ReceivePing.Start();
+            return PacketAction.Stop;
         });
 
         Task.Run(() => {
@@ -37,20 +26,18 @@ public class TcpNetClient(string remoteIp, int remotePort) : NetConnection(remot
                 RemoteRaw = new TcpClient();
                 RemoteRaw.Connect(RemoteIp, RemotePort);
 
-                pingTask.Elapsed += (_, _) => {
+                PingTask.Elapsed += (_, _) => {
                     PingChannel.Send(new ByteBuf());
                 };
 
-                loginTimeout.Elapsed += (_, _) => {
+                LoginTimeout.Elapsed += (_, _) => {
                     Disconnect(DisconnectReason.AuthorizationTimeout);
                 };
 
-                receivePing.Elapsed += (_, _) => {
+                ReceivePing.Elapsed += (_, _) => {
                     Disconnect(DisconnectReason.Timeout);
                 };
-                loginTimeout.Start();
-                
-                LoginChannel.Send(new ByteBuf());
+                LoginTimeout.Start();
 
                 Task.Run(() => {
                     while (!CloseTask.IsCompleted) {
@@ -105,7 +92,7 @@ public class TcpNetClient(string remoteIp, int remotePort) : NetConnection(remot
         return channels.Count;
     }
 
-    public override void RegisterPacketListener(NetChannel channel, Func<NetChannel, ByteBuf, PacketAction> listener) {
+    public override void RegisterPacketListener(NetChannel channel, Func<ByteBuf, PacketAction> listener) {
         channel.OnPacket.Add(listener);
     }
 
@@ -134,9 +121,9 @@ public class TcpNetClient(string remoteIp, int remotePort) : NetConnection(remot
     public override void Disconnect(DisconnectReason reason) {
         try {
             IsAuthorized = false;
-            pingTask.Dispose();
-            loginTimeout.Dispose();
-            receivePing.Dispose();
+            PingTask.Dispose();
+            LoginTimeout.Dispose();
+            ReceivePing.Dispose();
             RemoteRaw?.Close();
             RemoteRaw = null;
             Disconnecting(reason);

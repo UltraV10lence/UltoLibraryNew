@@ -4,7 +4,7 @@ namespace UltoLibraryNew.Network.Apps;
 
 public sealed class ByteBuf {
     private bool isInReadMode;
-    internal readonly MemoryStream Stream;
+    internal MemoryStream Stream;
 
     public ByteBuf() {
         Stream = new MemoryStream();

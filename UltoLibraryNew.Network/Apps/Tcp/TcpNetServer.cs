@@ -85,22 +85,10 @@ public class TcpNetServer(string ip, int port) : NetServer(ip, port) {
         }
 
         public void Init() {
-            RegisterPacketListener(PingChannel, (_, _) => {
+            RegisterPacketListener(PingChannel, _ => {
                 ReceivePing.Stop();
                 ReceivePing.Start();
-                return PacketAction.Skip;
-            });
-        
-            RegisterPacketListener(LoginChannel, (c, _) => {
-                c.Close();
-                PingTask.Start();
-                ReceivePing.Start();
-                LoginTimeout.Dispose();
-                LoginChannel.Send(new ByteBuf());
-
-                IsAuthorized = true;
-                Connected();
-                return PacketAction.Skip;
+                return PacketAction.Stop;
             });
             
             PingTask.Elapsed += (_, _) => {
@@ -194,7 +182,7 @@ public class TcpNetServer(string ip, int port) : NetServer(ip, port) {
             return channels.Count;
         }
 
-        public override void RegisterPacketListener(NetChannel channel, Func<NetChannel, ByteBuf, PacketAction> listener) {
+        public override void RegisterPacketListener(NetChannel channel, Func<ByteBuf, PacketAction> listener) {
             channel.OnPacket.Add(listener);
         }
 
