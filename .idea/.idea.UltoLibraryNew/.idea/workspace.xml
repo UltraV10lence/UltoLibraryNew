@@ -5,18 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="16af22be-7473-4cf7-89ef-931931f4f2db" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/SecureConnection.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.UltoLibraryNew/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UltoLibraryNew/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/ByteBuf.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/ByteBuf.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/NetChannel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/NetChannel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/NetConnection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/NetConnection.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/Packets/PacketAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/Packets/PacketAction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/Packets/PacketReceiver.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/Packets/PacketReceiver.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/Tcp/TcpNetClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/Tcp/TcpNetClient.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/Tcp/TcpNetServer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/Tcp/TcpNetServer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Web/HttpAccessControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/Web/HttpAccessControl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UltoLibraryNew/UltoLibraryNew.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew/UltoLibraryNew.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UltoLibraryNew/Vector2.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew/Vector2.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/UltoLibraryNew.Network.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/UltoLibraryNew.Network.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +22,10 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
@@ -64,6 +57,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/387238ef9c8f8c6b1dccf4dcba4eed0e459454919b2e4b9cad11a5071789df/Dictionary.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f0d5842055c33862fb8e733d61c64dd5fe95a1f13d5a45db2e3b17b9ef0ac/MemoryStream.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/UltoLibraryNew.Databases/Database.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://D:/Programming/C#/MyLibs/UltoLibraryNew/UltoLibraryNew.Network/Apps/ByteBuf.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/UltoLibraryNew.Network/Apps/ByteBuf.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/UltoLibraryNew.Network/Apps/NetChannel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/UltoLibraryNew.Network/Apps/Tcp/TcpNetClient.cs" root0="FORCE_HIGHLIGHTING" />
@@ -90,7 +84,7 @@
     ".NET Static Method.UltoLibraryNew.Network.Entry.Client.executor": "Run",
     ".NET Static Method.UltoLibraryNew.Network.Entry.Server.executor": "Run",
     ".NET Static Method.UltoLibraryNew.Network.Server.Main.executor": "Run",
-    ".NET Static Method.UltoLibraryNew.Network.TestClient.Main.executor": "Debug",
+    ".NET Static Method.UltoLibraryNew.Network.TestClient.Main.executor": "Run",
     ".NET Static Method.UltoLibraryNew.Network.TestServer.Main.executor": "Run",
     ".NET Static Method.UltoLibraryNew.Network.a.Main.executor": "Run",
     ".NET Static Method.UltoLibraryNew.Network.a.MainS.executor": "Run",
@@ -122,46 +116,6 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected=".NET Static Method.UltoLibraryNew.Network.TestClient.Main">
-    <configuration name="UltoLibraryNew.Network.TestClient.Main" type="DotNetStaticMethod" factoryName=".NET Static Method" temporary="true">
-      <option name="EXE_PATH" value="D:\Program Files\JetBrains\Rider\lib\ReSharperHost\JetLauncherILc.exe" />
-      <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="PASS_PARENT_ENVS" value="1" />
-      <option name="USE_EXTERNAL_CONSOLE" value="0" />
-      <option name="USE_MONO" value="0" />
-      <option name="RUNTIME_ARGUMENTS" value="" />
-      <option name="PROJECT_PATH" value="$PROJECT_DIR$/UltoLibraryNew.Network/UltoLibraryNew.Network.csproj" />
-      <option name="PROJECT_TFM" value="net8.0" />
-      <option name="CLASS_NAME" value="UltoLibraryNew.Network.TestClient" />
-      <option name="METHOD_NAME" value="Main" />
-      <method v="2">
-        <option name="Build" />
-      </method>
-    </configuration>
-    <configuration name="UltoLibraryNew.Network.TestServer.Main" type="DotNetStaticMethod" factoryName=".NET Static Method" temporary="true">
-      <option name="EXE_PATH" value="D:\Program Files\JetBrains\Rider\lib\ReSharperHost\JetLauncherILc.exe" />
-      <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="PASS_PARENT_ENVS" value="1" />
-      <option name="USE_EXTERNAL_CONSOLE" value="0" />
-      <option name="USE_MONO" value="0" />
-      <option name="RUNTIME_ARGUMENTS" value="" />
-      <option name="PROJECT_PATH" value="$PROJECT_DIR$/UltoLibraryNew.Network/UltoLibraryNew.Network.csproj" />
-      <option name="PROJECT_TFM" value="net8.0" />
-      <option name="CLASS_NAME" value="UltoLibraryNew.Network.TestServer" />
-      <option name="METHOD_NAME" value="Main" />
-      <method v="2">
-        <option name="Build" />
-      </method>
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue=".NET Static Method.UltoLibraryNew.Network.TestClient.Main" />
-        <item itemvalue=".NET Static Method.UltoLibraryNew.Network.TestServer.Main" />
-      </list>
-    </recent_temporary>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -273,7 +227,7 @@
       <workItem from="1715959741912" duration="483000" />
       <workItem from="1715960255429" duration="825000" />
       <workItem from="1716064257479" duration="16000" />
-      <workItem from="1716064484294" duration="4479000" />
+      <workItem from="1716064484294" duration="5237000" />
     </task>
     <task id="LOCAL-00001" summary="aga">
       <option name="closed" value="true" />
@@ -299,7 +253,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713609185070</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Connection encryption">
+      <option name="closed" value="true" />
+      <created>1716070417212</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1716070417212</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -312,21 +274,22 @@
     <MESSAGE value="aga" />
     <MESSAGE value="probably final version?" />
     <MESSAGE value="iiihihihihihihihii" />
-    <option name="LAST_COMMIT_MESSAGE" value="iiihihihihihihihii" />
+    <MESSAGE value="Connection encryption" />
+    <option name="LAST_COMMIT_MESSAGE" value="Connection encryption" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <condition expression="!BoundTo.IsServer &amp;&amp; ChannelName == &quot;scLogin&quot;" language="C#" />
+          <condition expression="!BoundTo.IsServer &amp;&amp; ChannelName == &quot;csLogin&quot;" language="C#" />
           <url>file://$PROJECT_DIR$/UltoLibraryNew.Network/Apps/NetChannel.cs</url>
-          <line>17</line>
+          <line>18</line>
           <properties documentPath="D:\Programming\C#\MyLibs\UltoLibraryNew\UltoLibraryNew.Network\Apps\NetChannel.cs" containingFunctionPresentation="Method 'Send'">
             <startOffsets>
-              <option value="558" />
+              <option value="581" />
             </startOffsets>
             <endOffsets>
-              <option value="596" />
+              <option value="619" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="8" />

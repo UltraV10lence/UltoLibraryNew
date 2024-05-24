@@ -13,15 +13,14 @@ public static class StringMatcher {
     public class Shape(string included, bool ignoreCase = false) {
         public readonly string Included = included;
         public readonly bool IgnoreCase = ignoreCase;
-
         public Shape? Lower {
             get;
             private init;
         }
 
         public Shape Append(Shape other) {
-            var sh = new Shape(Included, IgnoreCase) {
-                Lower = other
+            var sh = new Shape(other.Included, other.IgnoreCase) {
+                Lower = this
             };
             return sh;
         }
@@ -31,7 +30,8 @@ public static class StringMatcher {
 
         public bool Contains(char c) {
             if (IgnoreCase) c = char.ToLower(c);
-            var cont = Included.ToLower().Contains(c);
+            var inc = IgnoreCase ? Included.ToLower() : Included;
+            var cont = inc.Contains(c);
             if (!cont && Lower != null) return Lower.Contains(c);
             return cont;
         }
