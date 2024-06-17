@@ -1,193 +1,71 @@
-﻿using System.Net;
+using System.Net;
 using System.Net.Sockets;
-using UltoLibraryNew.Network.Apps.Packets;
-using Timer = System.Timers.Timer;
 
 namespace UltoLibraryNew.Network.Apps.Tcp;
 
-public class TcpNetServer(string ip, int port) : NetServer(ip, port) {
-    private readonly List<ServerConnection> connections = [ ];
+public class TcpNetServer {
+    public Task CloseTask => closeSource.Task;
+    public event Action<TcpNetConnection> OnConnect = _ => { };
+    private readonly TaskCompletionSource closeSource = new();
+    private readonly IPEndPoint localEndPoint;
+    private readonly List<TcpNetConnection> connections = [];
+    private TcpListener? server;
 
-    public override void Bind() {
-        CloseSource = new TaskCompletionSource();
+    public TcpNetServer(string ip, ushort port) {
+        localEndPoint = new IPEndPoint(IPAddress.Parse(ip), port);
+    }
+    public TcpNetServer(IPAddress ip, ushort port) {
+        localEndPoint = new IPEndPoint(ip, port);
+    }
+    public TcpNetServer(IPEndPoint endPoint) {
+        localEndPoint = endPoint;
+    }
 
-        Task.Run(() => {
+    public void Bind() {
+        server = new TcpListener(localEndPoint);
+        server.Start(16);
+
+        Task.Factory.StartNew(async () => {
             try {
-                var listener = new TcpListener(IPAddress.Parse(CurrentIp), CurrentPort);
-                listener.Start(10);
-
                 while (!CloseTask.IsCompleted) {
-                    try {
-                        var client = listener.AcceptTcpClientAsync().GetAwaiter().GetResult();
-                        var ep = (IPEndPoint)client.Client.RemoteEndPoint!;
-
-                        var connection = new ServerConnection(ep.Address.ToString(), ep.Port, this, client);
+                    var client = await server.AcceptTcpClientAsync();
+                    var ipPort = (IPEndPoint) client.Client.RemoteEndPoint!;
+                    var connection = new TcpNetConnection(client) {
+                        RemoteIp = ipPort.Address.ToString(),
+                        RemotePort = (ushort) ipPort.Port
+                    };
+                    connection.OnDisconnect += () => Disconnect0(connection);
+                    lock (connections) {
                         connections.Add(connection);
-                        connection.Init();
-                        connection.LoginTimeout.Start();
-
-                        connection.OnConnect += () => {
-                            Connect(connection);
-                        };
-                    } catch (Exception e) {
-                        Exception(e);
                     }
+                    connection.ReceivePackets();
+                    OnConnect(connection);
                 }
-                
-                listener.Stop();
-            } catch (Exception e) {
-                Exception(e);
+            }
+            catch {
                 Close();
             }
         });
     }
 
-    public override void Close() {
-        while (connections.Count > 0) {
-            Disconnect(connections[0], DisconnectReason.Disconnect);
-        }
-        
-        CloseSource.SetResult();
-    }
-
-    public void Disconnect(NetConnection conn, DisconnectReason reason) {
-        if (conn is not ServerConnection c) return;
-
-        try {
-            c.IsAuthorized = false;
-            c.PingTask.Dispose();
-            c.ReceivePing.Dispose();
-            c.LoginTimeout.Dispose();
-            c.RemoteRaw?.Close();
-            c.RemoteRaw = null;
-            c.Disconnecting(reason);
-            c.CloseSource.SetResult();
-            
-            connections.Remove(c);
-        } catch (Exception e) {
-            Exception(e);
+    public void Disconnect(TcpNetConnection connection) {
+        lock (connections) {
+            connection.Disconnecting();
         }
     }
-    
-    internal class ServerConnection : NetConnection {
-        public TcpClient? RemoteRaw { get; internal set; }
-        private readonly Dictionary<string, NetChannel> channels = new();
-        public readonly TcpNetServer Server;
 
-        public readonly Timer ReceivePing = new(Limits.ToReceivePing);
-        public readonly Timer PingTask = new(Limits.ToSendPing);
-        public readonly Timer LoginTimeout = new(Limits.ToAuthorize);
-        
-        public ServerConnection(string remoteIp, int remotePort, TcpNetServer server, TcpClient remote) : base(remoteIp, remotePort, true) {
-            Server = server;
-            RemoteRaw = remote;
-            PacketReceiver = new PacketReceiver(this);
+    private void Disconnect0(TcpNetConnection connection) {
+        connections.Remove(connection);
+        connection.TcpClient.Close();
+    }
+
+    public void Close() {
+        lock (connections) {
+            while (connections.Count > 0)
+                connections[0].Disconnecting();
         }
-
-        public void Init() {
-            RegisterPacketListener(PingChannel, _ => {
-                ReceivePing.Stop();
-                ReceivePing.Start();
-                return PacketAction.Stop;
-            });
-            
-            PingTask.Elapsed += (_, _) => {
-                PingChannel.Send(new ByteBuf());
-            };
-
-            LoginTimeout.Elapsed += (_, _) => {
-                Disconnect(DisconnectReason.AuthorizationTimeout);
-            };
-
-            ReceivePing.Elapsed += (_, _) => {
-                Disconnect(DisconnectReason.Timeout);
-            };
-            
-            PacketsTask();
-
-            Task.Run(() => {
-                while (!CloseTask.IsCompleted) {
-                    SendTask.Wait();
-                    TriggerPacketsSend();
-                    SendSource = new TaskCompletionSource();
-                }
-            });
-        }
-
-        private async void PacketsTask() {
-            await Task.Run(() => {
-                var buf = new byte[1024];
-
-                while (!CloseTask.IsCompleted) {
-                    try {
-                        stream ??= RemoteRaw!.GetStream();
-                        var length = stream.ReadAsync(buf).AsTask().GetAwaiter().GetResult();
-                        if (length == 0) continue;
-                
-                        var got = length == buf.Length ? buf : UltoBytes.SubArray(buf, 0, length);
-                
-                        try {
-                            PacketReceiver.AddData(got);
-                        } catch (Exception e) {
-                            Exception(e);
-                        }
-                    } catch {
-                        Disconnect(DisconnectReason.Disconnect);
-                    }
-                }
-            });
-        }
-
-        public override void TriggerPacketsSend() {
-            if (RemoteRaw == null) return;
-            try {
-                stream ??= RemoteRaw.GetStream();
-                var stop = false;
-
-                while (!stop) {
-                    stop = true;
-                    
-                    foreach (var c in channels.Values) {
-                        var data = c.GetNextNamedSlice();
-                        if (data == null) continue;
-                        stream.Write(data);
-                        stop = false;
-                    }
-                }
-            }
-            catch {
-                // ignored
-            }
-        }
-        
-        private NetworkStream? stream;
-
-        public override NetChannel OpenChannel(string name) {
-            if (HasChannel(name)) return channels[name];
-
-            var c = new NetChannel(this, name);
-            channels.Add(name, c);
-            return c;
-        }
-
-        public override bool HasChannel(string name) {
-            return channels.ContainsKey(name);
-        }
-
-        public override void CloseChannel(NetChannel channel) {
-            channels.Remove(channel.ChannelName);
-        }
-
-        public override int ChannelsCount() {
-            return channels.Count;
-        }
-
-        public override void RegisterPacketListener(NetChannel channel, Func<ByteBuf, PacketAction> listener) {
-            channel.OnPacket.Add(listener);
-        }
-
-        public override void Disconnect(DisconnectReason reason) {
-            Server.Disconnect(this, reason);
-        }
+        server!.Stop();
+        server.Dispose();
+        closeSource.SetResult();
     }
 }
