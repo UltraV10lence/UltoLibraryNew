@@ -88,8 +88,34 @@ public class ByteBuf {
         CheckCanWrite();
         enc ??= Encoding.UTF8;
         var str = enc.GetBytes(data);
-        Stream.Write(BitConverter.GetBytes((ushort) str.Length));
+        Write7BitEncodedInt(str.Length);
         Stream.Write(str);
+        return this;
+    }
+
+    public ByteBuf Write7BitEncodedInt(int data) {
+        CheckCanWrite();
+        
+        var uValue = (uint)data;
+        while (uValue > 0x7Fu) {
+            Stream.WriteByte((byte)(uValue | ~0x7Fu));
+            uValue >>= 7;
+        }
+
+        Stream.WriteByte((byte)uValue);
+        return this;
+    }
+
+    public ByteBuf Write7BitEncodedInt64(long value) {
+        CheckCanWrite();
+        
+        var uValue = (ulong)value;
+        while (uValue > 0x7Fu) {
+            Stream.WriteByte((byte)((uint)uValue | ~0x7Fu));
+            uValue >>= 7;
+        }
+
+        Stream.WriteByte((byte)uValue);
         return this;
     }
 
@@ -134,8 +160,54 @@ public class ByteBuf {
     }
     public string ReadString(Encoding? enc = null) {
         enc ??= Encoding.UTF8;
-        var len = ReadUShort();
+        var len = Read7BitEncodedInt();
         return enc.GetString(ReadBytes(len));
+    }
+    
+    public int Read7BitEncodedInt() {
+        uint result = 0;
+        byte byteReadJustNow;
+
+        const int maxBytesWithoutOverflow = 4;
+        for (var shift = 0; shift < maxBytesWithoutOverflow * 7; shift += 7) {
+            byteReadJustNow = (byte) Stream.ReadByte();
+            result |= (byteReadJustNow & 0x7Fu) << shift;
+
+            if (byteReadJustNow <= 0x7Fu) {
+                return (int)result;
+            }
+        }
+
+        byteReadJustNow = (byte) Stream.ReadByte();
+        if (byteReadJustNow > 0b_1111u) {
+            throw new IOException("Cannot read 7-bit encoded integer");
+        }
+
+        result |= (uint)byteReadJustNow << (maxBytesWithoutOverflow * 7);
+        return (int)result;
+    }
+    
+    public long Read7BitEncodedInt64() {
+        ulong result = 0;
+        byte byteReadJustNow;
+
+        const int maxBytesWithoutOverflow = 9;
+        for (var shift = 0; shift < maxBytesWithoutOverflow * 7; shift += 7) {
+            byteReadJustNow = (byte) Stream.ReadByte();
+            result |= (byteReadJustNow & 0x7Ful) << shift;
+
+            if (byteReadJustNow <= 0x7Fu) {
+                return (long)result;
+            }
+        }
+
+        byteReadJustNow = (byte) Stream.ReadByte();
+        if (byteReadJustNow > 0b_1u) {
+            throw new IOException("Cannot read 7-bit encoded long");
+        }
+
+        result |= (ulong)byteReadJustNow << (maxBytesWithoutOverflow * 7);
+        return (long)result;
     }
 
     public void Move(long index, SeekOrigin origin = SeekOrigin.Begin) {

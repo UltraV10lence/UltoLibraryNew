@@ -7,13 +7,13 @@ public class DatabaseTable<T> {
     public readonly List<T> Entries = new();
     private readonly IEnumerable<FieldInfo> databaseEntries;
 
-    public static readonly Type[] LegalTypes = {
+    public static readonly Type[] LegalTypes = [
         typeof(byte), typeof(byte[]), typeof(char), typeof(char[]), typeof(ushort), typeof(ushort[]), typeof(short),
         typeof(short[]), typeof(uint), typeof(uint[]), typeof(int), typeof(int[]), typeof(ulong), typeof(ulong[]),
         typeof(long), typeof(long[]), typeof(float), typeof(float[]), typeof(Half), typeof(Half[]), typeof(double),
         typeof(double[]), typeof(bool), typeof(bool[]), typeof(string), typeof(string[]), typeof(DateTime),
         typeof(DateTime[]), typeof(DateTimeOffset), typeof(DateTimeOffset[]), typeof(TimeSpan), typeof(TimeSpan[])
-    };
+    ];
 
     public DatabaseTable(string name) {
         Name = name;

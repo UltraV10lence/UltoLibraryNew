@@ -5,7 +5,7 @@ namespace UltoLibraryNew;
 
 [SuppressMessage("ReSharper", "NonReadonlyMemberInGetHashCode")]
 public class Vector2 : IEquatable<Vector2> {
-    public const double ComparisonEpsilon = 0.0001;
+    public const double ComparisonEpsilon = 1E-6;
     
     public double X, Y;
 
@@ -39,7 +39,7 @@ public class Vector2 : IEquatable<Vector2> {
     }
 
     public Vector2 Distance2(Vector2 other) {
-        return other - this;
+        return (other - this).Abs;
     }
 
     public double Distance(Vector2 other) {
@@ -84,13 +84,13 @@ public class Vector2 : IEquatable<Vector2> {
     }
     
     public void MoveTowardsDynamic(Vector2 target, int steps) {
-        var trans = Distance2(target) / steps;
+        var trans = (target - this) / steps;
         X += trans.X;
         Y += trans.Y;
     }
     
     public void MoveTowardsFixed(Vector2 target, double step) {
-        var trans = Distance2(target).Normalized * step;
+        var trans = (target - this).Normalized * step;
         X += trans.X;
         Y += trans.Y;
     }
@@ -152,7 +152,8 @@ public class Vector2 : IEquatable<Vector2> {
     public override bool Equals(object? obj) {
         if (ReferenceEquals(null, obj)) return false;
         if (ReferenceEquals(this, obj)) return true;
-        return obj.GetType() == GetType() && Equals((Vector2)obj);
+
+        return obj.GetType() == GetType() && this == (Vector2) obj;
     }
 
     public override int GetHashCode() {
