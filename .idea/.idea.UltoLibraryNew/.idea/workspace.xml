@@ -5,22 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="16af22be-7473-4cf7-89ef-931931f4f2db" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/UltoLibraryNew/Nbt/NbtArray.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UltoLibraryNew/Nbt/NbtComponent.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UltoLibraryNew/Nbt/NbtContainer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UltoLibraryNew/Nbt/NbtType.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UltoLibraryNew/Nbt/Values/NbtBool.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UltoLibraryNew/Nbt/Values/NbtByteArray.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UltoLibraryNew/Nbt/Values/NbtDateTime.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UltoLibraryNew/Nbt/Values/NbtNumber.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UltoLibraryNew/Nbt/Values/NbtNumbers.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UltoLibraryNew/Nbt/Values/NbtString.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UltoLibraryNew/Nbt/Values/NbtTimeSpan.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.UltoLibraryNew/.idea/projectSettingsUpdater.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UltoLibraryNew/.idea/projectSettingsUpdater.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UltoLibraryNew/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UltoLibraryNew/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Databases/DatabaseTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew.Databases/DatabaseTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/ByteBuf.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/ByteBuf.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/PacketReader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/PacketReader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/Tcp/TcpNetServer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/Tcp/TcpNetServer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/UltoLibraryNew.Network.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/UltoLibraryNew.Network.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UltoLibraryNew/UltoLibraryNew.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew/UltoLibraryNew.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +61,9 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e534bbce6a3fef6e3cf88085f8276c29cec1f1b118daaebce187d6d28f4f15e/System.SR.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f0d5842055c33862fb8e733d61c64dd5fe95a1f13d5a45db2e3b17b9ef0ac/MemoryStream.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/UltoLibraryNew.Databases/Database.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://D:/Programming/C#/MyLibs/UltoLibraryNew/UltoLibraryNew.Databases/DatabaseTable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/Programming/C#/MyLibs/UltoLibraryNew/UltoLibraryNew.Network/Apps/ByteBuf.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/Programming/C#/MyLibs/UltoLibraryNew/UltoLibraryNew/Vector2.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -129,13 +121,6 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.environmentSetup&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  },
-  &quot;keyToStringList&quot;: {
-    &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\ulto\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\ulto\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache&quot;,
-      &quot;C:\\Users\\ulto\\AppData\\Local\\Symbols\\src&quot;
-    ]
   }
 }</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -273,6 +258,11 @@
       <workItem from="1723080524620" duration="588000" />
       <workItem from="1723302741392" duration="1550000" />
       <workItem from="1723304610510" duration="1000" />
+      <workItem from="1726760568052" duration="1038000" />
+      <workItem from="1727285493076" duration="59000" />
+      <workItem from="1728756522814" duration="234000" />
+      <workItem from="1729024334289" duration="1003000" />
+      <workItem from="1730023891639" duration="3531000" />
     </task>
     <task id="LOCAL-00001" summary="aga">
       <option name="closed" value="true" />
@@ -322,7 +312,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718647313506</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="slight changes">
+      <option name="closed" value="true" />
+      <created>1726761598209</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1726761598209</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -338,7 +336,8 @@
     <MESSAGE value="Connection encryption" />
     <MESSAGE value="StringMatcher.cs fixed append and contains" />
     <MESSAGE value="V3.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="V3.0" />
+    <MESSAGE value="slight changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="slight changes" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

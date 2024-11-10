@@ -25,6 +25,7 @@ public class TcpNetConnection {
             Send(new ByteBuf(), true);
         };
         ping.Start();
+        ResetTimeout();
     }
 
     private void ResetTimeout() {

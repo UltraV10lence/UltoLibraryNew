@@ -64,8 +64,8 @@ public class TcpNetServer {
             while (connections.Count > 0)
                 connections[0].Disconnecting();
         }
-        server!.Stop();
-        server.Dispose();
+        server?.Stop();
+        server?.Dispose();
         closeSource.SetResult();
     }
 }

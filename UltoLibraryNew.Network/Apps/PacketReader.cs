@@ -10,7 +10,7 @@ public class PacketReader(TcpNetConnection conn) {
     
     public void AddData(byte[] data) {
         conn.PacketTick();
-        var sData = new MemoryStream(data, false);
+        using var sData = new MemoryStream(data, false);
 
         while (true) {
             if (!CheckHasLength(sData)) {
@@ -68,22 +68,20 @@ public class PacketReader(TcpNetConnection conn) {
     }
 
     private (long length, bool isPing) GetLength(MemoryStream data) {
-        hasEnough:
-        if (currentData.Position >= PacketLengthBytes) {
-            currentData.Seek(-PacketLengthBytes, SeekOrigin.Current);
-            var buf = new byte[PacketLengthBytes];
-            currentData.ReadExactly(buf);
-            var isPing = (buf[PacketLengthBytes - 1] & 0b10000000) != 0;
-            if (isPing) buf[PacketLengthBytes - 1] &= 0b01111111;
-            return (BitConverter.ToInt64(buf), isPing);
-        }
+        while (true) {
+            if (currentData.Position >= PacketLengthBytes) {
+                currentData.Seek(-PacketLengthBytes, SeekOrigin.Current);
+                var buf = new byte[PacketLengthBytes];
+                currentData.ReadExactly(buf);
+                var isPing = (buf[PacketLengthBytes - 1] & 0b10000000) != 0;
+                if (isPing) buf[PacketLengthBytes - 1] &= 0b01111111;
+                return (BitConverter.ToInt64(buf), isPing);
+            }
 
-        if (currentData.Position + data.Length - data.Position >= PacketLengthBytes) {
+            if (currentData.Position + data.Length - data.Position < PacketLengthBytes) return (-1, false);
+
             var toSwap = PacketLengthBytes - currentData.Position;
             CopyToExactly(data, currentData, toSwap);
-            goto hasEnough;
         }
-
-        return (-1, false);
     }
 }
