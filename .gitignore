@@ -398,3 +398,5 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
+/UltoLibraryNew.Databases/UltoLibraryNew.Databases.csproj
+/UltoLibraryNew.NeuralNetworks/UltoLibraryNew.NeuralNetworks.csproj

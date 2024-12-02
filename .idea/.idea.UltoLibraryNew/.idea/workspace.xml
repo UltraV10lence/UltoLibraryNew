@@ -4,17 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="16af22be-7473-4cf7-89ef-931931f4f2db" name="Changes" comment="Added way to encrypt connection through EncryptionManager.cs.">
-      <change afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/Tcp/EncryptionManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/TcpDecryptionStream.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/TcpEncryptionStream.cs" afterDir="false" />
+    <list default="true" id="16af22be-7473-4cf7-89ef-931931f4f2db" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.UltoLibraryNew/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UltoLibraryNew/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UltoLibraryNew/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UltoLibraryNew/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/ByteBuf.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/ByteBuf.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/PacketReader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/PacketReader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/Tcp/TcpNetClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/Tcp/TcpNetClient.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/Tcp/TcpNetConnection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/Tcp/TcpNetConnection.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/Tcp/TcpNetServer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/Tcp/TcpNetServer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/UltoLibraryNew.Network.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/UltoLibraryNew.Network.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,50 +76,50 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Static Method.UltoLibraryNew.Databases.Test.Main.executor": "Run",
-    ".NET Static Method.UltoLibraryNew.Databases.Tests.Main.executor": "Run",
-    ".NET Static Method.UltoLibraryNew.Databases.test.Main.executor": "Run",
-    ".NET Static Method.UltoLibraryNew.Network.Apps.Client.Main.executor": "Run",
-    ".NET Static Method.UltoLibraryNew.Network.Apps.Server.Main.executor": "Debug",
-    ".NET Static Method.UltoLibraryNew.Network.Client.Main.executor": "Run",
-    ".NET Static Method.UltoLibraryNew.Network.Entry.Client.executor": "Run",
-    ".NET Static Method.UltoLibraryNew.Network.Entry.Server.executor": "Run",
-    ".NET Static Method.UltoLibraryNew.Network.Server.Main.executor": "Run",
-    ".NET Static Method.UltoLibraryNew.Network.Test.Main.executor": "Run",
-    ".NET Static Method.UltoLibraryNew.Network.Test.Test1.executor": "Run",
-    ".NET Static Method.UltoLibraryNew.Network.Test.Test2.executor": "Run",
-    ".NET Static Method.UltoLibraryNew.Network.Test.Test3.executor": "Run",
-    ".NET Static Method.UltoLibraryNew.Network.Test.Test4.executor": "Run",
-    ".NET Static Method.UltoLibraryNew.Network.Test.Test5.executor": "Run",
-    ".NET Static Method.UltoLibraryNew.Network.TestClient.Main.executor": "Run",
-    ".NET Static Method.UltoLibraryNew.Network.TestServer.Main.executor": "Run",
-    ".NET Static Method.UltoLibraryNew.Network.a.Main.executor": "Run",
-    ".NET Static Method.UltoLibraryNew.Network.a.MainS.executor": "Run",
-    ".NET Static Method.UltoLibraryNew.NeuralNetworks.Tests.Main.executor": "Run",
-    ".NET Static Method.UltoLibraryNew.Tests.Main.executor": "Run",
-    ".NET Static Method.UltoLibraryNew.test.Main.executor": "Run",
-    "Attach to Process.12380:dotnet.executor": "Debug",
-    "RunOnceActivity.CodyAccountHistoryMigration": "true",
-    "RunOnceActivity.CodyConvertUrlToCodebaseName": "true",
-    "RunOnceActivity.CodyHistoryLlmMigration": "true",
-    "RunOnceActivity.CodyProjectSettingsMigration": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "deletionFromPopupRequiresConfirmation": "false",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.environmentSetup",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Static Method.UltoLibraryNew.Databases.Test.Main.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Static Method.UltoLibraryNew.Databases.Tests.Main.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Static Method.UltoLibraryNew.Databases.test.Main.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Static Method.UltoLibraryNew.Network.Apps.Client.Main.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Static Method.UltoLibraryNew.Network.Apps.Server.Main.executor&quot;: &quot;Debug&quot;,
+    &quot;.NET Static Method.UltoLibraryNew.Network.Client.Main.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Static Method.UltoLibraryNew.Network.Entry.Client.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Static Method.UltoLibraryNew.Network.Entry.Server.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Static Method.UltoLibraryNew.Network.Server.Main.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Static Method.UltoLibraryNew.Network.Test.Main.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Static Method.UltoLibraryNew.Network.Test.Test1.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Static Method.UltoLibraryNew.Network.Test.Test2.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Static Method.UltoLibraryNew.Network.Test.Test3.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Static Method.UltoLibraryNew.Network.Test.Test4.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Static Method.UltoLibraryNew.Network.Test.Test5.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Static Method.UltoLibraryNew.Network.TestClient.Main.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Static Method.UltoLibraryNew.Network.TestServer.Main.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Static Method.UltoLibraryNew.Network.a.Main.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Static Method.UltoLibraryNew.Network.a.MainS.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Static Method.UltoLibraryNew.NeuralNetworks.Tests.Main.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Static Method.UltoLibraryNew.Tests.Main.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Static Method.UltoLibraryNew.test.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Attach to Process.12380:dotnet.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.CodyAccountHistoryMigration&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.CodyConvertUrlToCodebaseName&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.CodyHistoryLlmMigration&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.CodyProjectSettingsMigration&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.environmentSetup&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Static Method.UltoLibraryNew.Network.Client.Main">
     <configuration name="UltoLibraryNew.Network.Client.Main" type="DotNetStaticMethod" factoryName=".NET Static Method" temporary="true">
       <option name="EXE_PATH" value="D:\Program Files\JetBrains\Rider\lib\ReSharperHost\JetLauncherILc.exe" />
@@ -309,7 +301,7 @@
       <workItem from="1729024334289" duration="1003000" />
       <workItem from="1730023891639" duration="3531000" />
       <workItem from="1731265181764" duration="105000" />
-      <workItem from="1733166392533" duration="3875000" />
+      <workItem from="1733166392533" duration="4871000" />
     </task>
     <task id="LOCAL-00001" summary="aga">
       <option name="closed" value="true" />
@@ -383,7 +375,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733170290807</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="push 2 try">
+      <option name="closed" value="true" />
+      <created>1733170430292</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1733170430292</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -402,7 +402,8 @@
     <MESSAGE value="slight changes" />
     <MESSAGE value="small bugfixes" />
     <MESSAGE value="Added way to encrypt connection through EncryptionManager.cs." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added way to encrypt connection through EncryptionManager.cs." />
+    <MESSAGE value="push 2 try" />
+    <option name="LAST_COMMIT_MESSAGE" value="push 2 try" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

@@ -43,9 +43,7 @@ public class Vector2 : IEquatable<Vector2> {
     }
 
     public double Distance(Vector2 other) {
-        var dx = X - other.X;
-        var dy = Y - other.Y;
-        return Math.Sqrt(dx * dx + dy * dy);
+        return (other - this).Length;
     }
 
     public double Angle(Vector2 other) {
@@ -83,20 +81,10 @@ public class Vector2 : IEquatable<Vector2> {
         return n1.X * n2.X + n1.Y * n2.Y;
     }
     
-    public void MoveTowardsDynamic(Vector2 target, int steps) {
-        var trans = (target - this) / steps;
+    public void MoveTowardsFor(Vector2 target, double stepSize) {
+        var trans = (target - this).Normalized * stepSize;
         X += trans.X;
         Y += trans.Y;
-    }
-    
-    public void MoveTowardsFixed(Vector2 target, double step) {
-        var trans = (target - this).Normalized * step;
-        X += trans.X;
-        Y += trans.Y;
-    }
-
-    public Point ToPoint() {
-        return new Point((int)X, (int)Y);
     }
 
     public override string ToString() {
@@ -135,6 +123,9 @@ public class Vector2 : IEquatable<Vector2> {
     }
     public static bool operator!=(Vector2 a, Vector2 b) { return !(a == b); }
 
+    public static implicit operator Point(Vector2 self) => new((int) self.X, (int) self.Y);
+    public static explicit operator Vector2(Point other) => new(other.X, other.Y);
+
     public static Vector2 Max(Vector2 a, Vector2 b) {
         return new Vector2(Math.Max(a.X, b.X), Math.Max(a.Y, b.Y));
     }
@@ -153,7 +144,7 @@ public class Vector2 : IEquatable<Vector2> {
         if (ReferenceEquals(null, obj)) return false;
         if (ReferenceEquals(this, obj)) return true;
 
-        return obj.GetType() == GetType() && this == (Vector2) obj;
+        return obj.GetType() == typeof(Vector2) && this == (Vector2) obj;
     }
 
     public override int GetHashCode() {

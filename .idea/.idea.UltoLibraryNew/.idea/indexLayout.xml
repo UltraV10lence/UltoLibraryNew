@@ -2,7 +2,11 @@
 <project version="4">
   <component name="UserContentModel">
     <attachedFolders />
-    <explicitIncludes />
+    <explicitIncludes>
+      <Path>UltoLibraryNew.Databases/Database.cs</Path>
+      <Path>UltoLibraryNew.Databases/DatabaseTable.cs</Path>
+      <Path>UltoLibraryNew.Databases/IncludeInDatabase.cs</Path>
+    </explicitIncludes>
     <explicitExcludes />
   </component>
 </project>

@@ -9,6 +9,10 @@ public static class StringMatcher {
     public static readonly Shape ServiceChars = new ("\t\n\r" + (char)13);
     public static readonly Shape NickName = Name.Append(Numbers);
     public static readonly Shape EMail = NickName.Append("@.");
+    public static readonly Shape NumericIp = Numbers.Append(".");
+    public static readonly Shape NumericIpPort = NumericIp.Append(":");
+    public static readonly Shape Ip = NickName.Append(".");
+    public static readonly Shape IpPort = Ip.Append(":");
     
     public class Shape(string included, bool ignoreCase = false) {
         public readonly string Included = included;
@@ -32,8 +36,9 @@ public static class StringMatcher {
             if (IgnoreCase) c = char.ToLower(c);
             var inc = IgnoreCase ? Included.ToLower() : Included;
             var cont = inc.Contains(c);
-            if (!cont && Lower != null) return Lower.Contains(c);
-            return cont;
+
+            if (cont) return true;
+            return Lower != null && Lower.Contains(c);
         }
         
         public bool Matches(string str) {

@@ -29,7 +29,7 @@ public class Database {
         data.Seek(0, SeekOrigin.Begin);
 
         using var fileStream = File.OpenWrite(file);
-        using var stream = encryptionKey is not null ? UltoBytes.EncryptionAesStream(fileStream, encryptionKey) : fileStream;
+        using var stream = encryptionKey is not null ? UltoBytes.EncryptionAesStream(fileStream, encryptionKey, null) : fileStream;
         
         UltoBytes.CompressStream(data, stream);
     }
@@ -37,7 +37,7 @@ public class Database {
     public static Database Load(string file, byte[]? encryptionKey = null) {
         using var fileStream = File.OpenRead(file);
         using var stream = encryptionKey is not null ?
-            UltoBytes.DecompressionStream(UltoBytes.DecryptionAesStream(fileStream, encryptionKey)) :
+            UltoBytes.DecompressionStream(UltoBytes.DecryptionAesStream(fileStream, encryptionKey, null)) :
             UltoBytes.DecompressionStream(fileStream);
         var reader = new BinaryReader(stream);
 

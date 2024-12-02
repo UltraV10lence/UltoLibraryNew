@@ -41,18 +41,21 @@ public class TriState {
         return !(left == right);
     }
 
+    public static explicit operator TriState(bool other) => new(other);
+    public static explicit operator TriState(bool? other) => new(other);
+    public static implicit operator bool?(TriState self) => self.value;
+    public static implicit operator bool(TriState self) => self.ToBool();
+
     public override int GetHashCode() {
         return ToByte().GetHashCode();
     }
 
     public override bool Equals(object? obj) {
+        if (obj is bool b) return value == b;
         return obj is TriState other && Equals(other);
     }
 
     public bool Equals(TriState other) {
         return value == other.value;
-    }
-    public bool Equals(bool other) {
-        return Equals(other ? TRUE : FALSE);
     }
 }

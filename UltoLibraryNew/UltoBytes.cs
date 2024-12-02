@@ -29,13 +29,7 @@ public static class UltoBytes {
         return found;
     }
     
-    public static string ToString(byte[] array) {
-        return array.Length switch {
-            0 => string.Empty,
-            > int.MaxValue / 3 => throw new ArgumentOutOfRangeException(nameof(array.Length), "Length is too large."),
-            _ => $"[{string.Join(", ", array)}]"
-        };
-    }
+    public static string ToString(byte[] array) => string.Join(", ", array);
     
     public static byte[] XorKey(byte[] data, byte[] key) {
         if (key.Length == 0 || data.Length == 0) return data;
@@ -62,15 +56,17 @@ public static class UltoBytes {
     public static string ToBase64Str(byte[] bytes) {
         return Convert.ToBase64String(bytes);
     }
-    public static byte[] ToBase64Bytes(byte[] bytes) {
-        return Encoding.UTF8.GetBytes(ToBase64Str(bytes));
+    public static byte[] ToBase64Bytes(byte[] bytes, Encoding? encoding = null) {
+        encoding ??= Encoding.UTF8;
+        return encoding.GetBytes(ToBase64Str(bytes));
     }
     
     public static byte[] FromBase64Str(string str) {
         return Convert.FromBase64String(str);
     }
-    public static byte[] FromBase64Bytes(byte[] bytes) {
-        return FromBase64Str(Encoding.UTF8.GetString(bytes));
+    public static byte[] FromBase64Bytes(byte[] bytes, Encoding? encoding = null) {
+        encoding ??= Encoding.UTF8;
+        return FromBase64Str(encoding.GetString(bytes));
     }
     
     public static string ToHexStr(byte[] bytes) {
@@ -104,85 +100,89 @@ public static class UltoBytes {
         aes.GenerateKey();
         return aes.Key;
     }
-    public static byte[] EncryptAes(byte[] data, byte[] key) {
+    
+    public static byte[] EncryptAes(byte[] data, byte[] key, byte[]? iv) {
         using var aes = Aes.Create();
         aes.Key = key;
-        aes.Mode = CipherMode.ECB;
+        if (iv != null) aes.IV = iv;
+        else aes.Mode = CipherMode.ECB;
         aes.Padding = PaddingMode.PKCS7;
         using var encryptor = aes.CreateEncryptor();
         return encryptor.TransformFinalBlock(data, 0, data.Length);
     }
-    public static byte[] DecryptAes(byte[] data, byte[] key) {
+    
+    public static byte[] DecryptAes(byte[] data, byte[] key, byte[]? iv) {
         using var aes = Aes.Create();
         aes.Key = key;
-        aes.Mode = CipherMode.ECB;
+        if (iv != null) aes.IV = iv;
+        else aes.Mode = CipherMode.ECB;
         aes.Padding = PaddingMode.PKCS7;
         using var decryptor = aes.CreateDecryptor();
         return decryptor.TransformFinalBlock(data, 0, data.Length);
     }
-    public static void EncryptAesStream(Stream data, Stream to, byte[] key) {
+    public static void EncryptAesStream(Stream data, Stream to, byte[] key, byte[]? iv) {
         using var aes = Aes.Create();
         aes.Key = key;
-        aes.Mode = CipherMode.ECB;
+        if (iv != null) aes.IV = iv;
+        else aes.Mode = CipherMode.ECB;
         aes.Padding = PaddingMode.PKCS7;
         using (var cryptoStream = new CryptoStream(to, aes.CreateEncryptor(), CryptoStreamMode.Write, true)) {
             data.CopyTo(cryptoStream);
         }
     }
-    public static Stream EncryptionAesStream(Stream to, byte[] key) {
+    public static Stream EncryptionAesStream(Stream to, byte[] key, byte[]? iv) {
         using var aes = Aes.Create();
         aes.Key = key;
-        aes.Mode = CipherMode.ECB;
+        if (iv != null) aes.IV = iv;
+        else aes.Mode = CipherMode.ECB;
         aes.Padding = PaddingMode.PKCS7;
         return new CryptoStream(to, aes.CreateEncryptor(), CryptoStreamMode.Write, true);
     }
-    public static void DecryptAesStream(Stream data, Stream to, byte[] key) {
+    public static void DecryptAesStream(Stream data, Stream to, byte[] key, byte[]? iv) {
         using var aes = Aes.Create();
         aes.Key = key;
-        aes.Mode = CipherMode.ECB;
+        if (iv != null) aes.IV = iv;
+        else aes.Mode = CipherMode.ECB;
         aes.Padding = PaddingMode.PKCS7;
         using (var cryptoStream = new CryptoStream(data, aes.CreateDecryptor(), CryptoStreamMode.Read, true)) {
             cryptoStream.CopyTo(to);
         }
     }
-    public static Stream DecryptionAesStream(Stream data, byte[] key) {
+    public static Stream DecryptionAesStream(Stream data, byte[] key, byte[]? iv) {
         using var aes = Aes.Create();
         aes.Key = key;
-        aes.Mode = CipherMode.ECB;
+        if (iv != null) aes.IV = iv;
+        else aes.Mode = CipherMode.ECB;
         aes.Padding = PaddingMode.PKCS7;
         return new CryptoStream(data, aes.CreateDecryptor(), CryptoStreamMode.Read, true);
     }
 
     public static byte[] Compress(byte[] data) {
         var output = new MemoryStream();
-        using (var deflate = new DeflateStream(output, CompressionMode.Compress)) {
-            deflate.Write(data, 0, data.Length);
-        }
+        CompressStream(new MemoryStream(data), output);
         return output.ToArray();
     }
     public static byte[] Decompress(byte[] data) {
         var output = new MemoryStream();
-        using (var deflate = new DeflateStream(new MemoryStream(data), CompressionMode.Decompress)) {
-            deflate.CopyTo(output);
-        }
+        DecompressStream(new MemoryStream(data), output);
         return output.ToArray();
     }
 
-    public static void CompressStream(Stream data, Stream output) {
-        using (var deflate = new DeflateStream(output, CompressionMode.Compress, true)) {
+    public static void CompressStream(Stream data, Stream output, bool leaveOpen = false) {
+        using (var deflate = CompressionStream(output, leaveOpen)) {
             data.CopyTo(deflate);
         }
     }
-    public static Stream CompressionStream(Stream output) {
-        return new DeflateStream(output, CompressionMode.Compress, true);
+    public static Stream CompressionStream(Stream output, bool leaveOpen = false) {
+        return new BrotliStream(output, CompressionMode.Compress, leaveOpen);
     }
-    public static void DecompressStream(Stream data, Stream output) {
-        using (var deflate = new DeflateStream(data, CompressionMode.Decompress, true)) {
+    public static void DecompressStream(Stream data, Stream output, bool leaveOpen = false) {
+        using (var deflate = DecompressionStream(data, leaveOpen)) {
             deflate.CopyTo(output);
         }
     }
-    public static Stream DecompressionStream(Stream data) {
-        return new DeflateStream(data, CompressionMode.Decompress, true);
+    public static Stream DecompressionStream(Stream data, bool leaveOpen = false) {
+        return new BrotliStream(data, CompressionMode.Decompress, leaveOpen);
     }
     
     public static (byte[] publicKey, byte[] privateKey) GenerateRsaKeys(bool doubleKeys) {
