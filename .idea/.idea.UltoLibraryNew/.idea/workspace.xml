@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="16af22be-7473-4cf7-89ef-931931f4f2db" name="Changes" comment="">
+    <list default="true" id="16af22be-7473-4cf7-89ef-931931f4f2db" name="Changes" comment="Added way to encrypt connection through EncryptionManager.cs.">
       <change afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/Tcp/EncryptionManager.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/TcpDecryptionStream.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/TcpEncryptionStream.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/EncryptionTest.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UltoLibraryNew/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UltoLibraryNew/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/ByteBuf.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/ByteBuf.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/PacketReader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/PacketReader.cs" afterDir="false" />
@@ -65,10 +64,10 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/93cc83e0618b5a13adb149e96b5513b5ea5e46921c2bdbef1ceaa6973363be36/TimeSpanFormat.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c38712da69ab568dd5252aa66b4ecd28902981ede1307a1c7acc7561f16/JulianCalendar.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/cfcfa3591cfe8e7d99db20c818f3316e394a8bffff43622336f3662fe8971e/Stream.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d791c3eb25297f33ebfc088aa821fe66a8a3a295b63fbd1a1d8f4b2e77e1017/ReadOnlySpan.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e534bbce6a3fef6e3cf88085f8276c29cec1f1b118daaebce187d6d28f4f15e/System.SR.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f0d5842055c33862fb8e733d61c64dd5fe95a1f13d5a45db2e3b17b9ef0ac/MemoryStream.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/UltoLibraryNew.Databases/Database.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/UltoLibraryNew.Network/EncryptionTest.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -92,7 +91,7 @@
     ".NET Static Method.UltoLibraryNew.Databases.test.Main.executor": "Run",
     ".NET Static Method.UltoLibraryNew.Network.Apps.Client.Main.executor": "Run",
     ".NET Static Method.UltoLibraryNew.Network.Apps.Server.Main.executor": "Debug",
-    ".NET Static Method.UltoLibraryNew.Network.Client.Main.executor": "Debug",
+    ".NET Static Method.UltoLibraryNew.Network.Client.Main.executor": "Run",
     ".NET Static Method.UltoLibraryNew.Network.Entry.Client.executor": "Run",
     ".NET Static Method.UltoLibraryNew.Network.Entry.Server.executor": "Run",
     ".NET Static Method.UltoLibraryNew.Network.Server.Main.executor": "Run",
@@ -129,7 +128,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected=".NET Static Method.UltoLibraryNew.Network.Server.Main">
+  <component name="RunManager" selected=".NET Static Method.UltoLibraryNew.Network.Client.Main">
     <configuration name="UltoLibraryNew.Network.Client.Main" type="DotNetStaticMethod" factoryName=".NET Static Method" temporary="true">
       <option name="EXE_PATH" value="D:\Program Files\JetBrains\Rider\lib\ReSharperHost\JetLauncherILc.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -164,8 +163,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue=".NET Static Method.UltoLibraryNew.Network.Server.Main" />
         <item itemvalue=".NET Static Method.UltoLibraryNew.Network.Client.Main" />
+        <item itemvalue=".NET Static Method.UltoLibraryNew.Network.Server.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -310,7 +309,7 @@
       <workItem from="1729024334289" duration="1003000" />
       <workItem from="1730023891639" duration="3531000" />
       <workItem from="1731265181764" duration="105000" />
-      <workItem from="1733166392533" duration="3537000" />
+      <workItem from="1733166392533" duration="3875000" />
     </task>
     <task id="LOCAL-00001" summary="aga">
       <option name="closed" value="true" />
@@ -376,7 +375,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731265251021</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added way to encrypt connection through EncryptionManager.cs.">
+      <option name="closed" value="true" />
+      <created>1733170290807</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1733170290807</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -394,26 +401,10 @@
     <MESSAGE value="V3.0" />
     <MESSAGE value="slight changes" />
     <MESSAGE value="small bugfixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="small bugfixes" />
+    <MESSAGE value="Added way to encrypt connection through EncryptionManager.cs." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added way to encrypt connection through EncryptionManager.cs." />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/UltoLibraryNew.Network/EncryptionTest.cs</url>
-          <line>9</line>
-          <properties documentPath="D:\Programming\C#\MyLibs\UltoLibraryNew\UltoLibraryNew.Network\EncryptionTest.cs" containingFunctionPresentation="Lambda expression inside Method 'Main'">
-            <startOffsets>
-              <option value="293" />
-            </startOffsets>
-            <endOffsets>
-              <option value="340" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="Type#UltoLibraryNew.NeuralNetworks.NeuralNetwork" memberName="Layers" />
