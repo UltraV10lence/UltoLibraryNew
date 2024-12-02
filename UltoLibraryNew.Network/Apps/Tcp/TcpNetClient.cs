@@ -7,19 +7,19 @@ public class TcpNetClient : TcpNetConnection {
     public event Action OnConnect = () => { };
     private readonly IPEndPoint localEndPoint;
     
-    public TcpNetClient(IPEndPoint endPoint) : base(new TcpClient()) {
+    public TcpNetClient(IPEndPoint endPoint, EncryptionManager? encryptionManager = null) : base(new TcpClient(), encryptionManager) {
         localEndPoint = endPoint;
         RemoteIp = endPoint.Address.ToString();
         RemotePort = (ushort) endPoint.Port;
     }
     
-    public TcpNetClient(IPAddress ip, ushort port) : base(new TcpClient()) {
+    public TcpNetClient(IPAddress ip, ushort port, EncryptionManager? encryptionManager = null) : base(new TcpClient(), encryptionManager) {
         localEndPoint = new IPEndPoint(ip, port);
         RemoteIp = localEndPoint.Address.ToString();
         RemotePort = (ushort) localEndPoint.Port;
     }
 
-    public TcpNetClient(string ip, ushort port) : base(new TcpClient()) {
+    public TcpNetClient(string ip, ushort port, EncryptionManager? encryptionManager = null) : base(new TcpClient(), encryptionManager) {
         localEndPoint = new IPEndPoint(IPAddress.Parse(ip), port);
         RemoteIp = localEndPoint.Address.ToString();
         RemotePort = (ushort) localEndPoint.Port;
@@ -27,6 +27,7 @@ public class TcpNetClient : TcpNetConnection {
 
     public void Connect() {
         TcpClient.Connect(localEndPoint);
+        EncryptionManager?.InitTcpStream(TcpClient.GetStream());
         OnConnect();
         ReceivePackets();
     }

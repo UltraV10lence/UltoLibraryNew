@@ -20,17 +20,18 @@ public class PacketReader(TcpNetConnection conn) {
 
         hasEnough:
             if (currentData.Position - PacketLengthBytes >= currentPacketLength) {
-                var packet = new MemoryStream();
+                var buffer = new MemoryStream();
                 currentData.Seek(-currentPacketLength, SeekOrigin.Current);
-                CopyToExactly(currentData, packet, currentPacketLength);
-                if (!currentPacketPing) {
-                    var pac = new ByteBuf(packet);
-                    pac.EnterReadOnlyMode();
-                    conn.Packet(pac);
+                CopyToExactly(currentData, buffer, currentPacketLength);
+                
+                if (currentPacketPing) {
+                    buffer.Dispose();
+                } else {
+                    var packet = new ByteBuf(buffer);
+                    packet.EnterReadOnlyMode();
+                    conn.Packet(packet);
                 }
-                else {
-                    packet.Dispose();
-                }
+                
                 currentData.Seek(-(currentPacketLength + PacketLengthBytes), SeekOrigin.Current);
                 currentPacketLength = -1;
                 currentPacketPing = false;

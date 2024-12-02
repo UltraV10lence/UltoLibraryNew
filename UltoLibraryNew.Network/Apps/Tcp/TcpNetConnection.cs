@@ -11,12 +11,14 @@ public class TcpNetConnection {
     public readonly TcpClient TcpClient;
     public string RemoteIp { get; internal set; } = null!;
     public ushort RemotePort { get; internal set; }
+
+    public EncryptionManager? EncryptionManager { get; set; }
     
     protected readonly TaskCompletionSource CloseSource = new();
     private readonly PacketReader reader;
     private Timer? timeout, ping;
 
-    public TcpNetConnection(TcpClient client) {
+    public TcpNetConnection(TcpClient client, EncryptionManager? encryptionManager = null) {
         OnPacketTick = ResetTimeout;
         reader = new PacketReader(this);
         TcpClient = client;
@@ -24,6 +26,10 @@ public class TcpNetConnection {
         ping.Elapsed += (_, _) => {
             Send(new ByteBuf(), true);
         };
+
+        if (client.Connected) encryptionManager?.InitTcpStream(TcpClient.GetStream());
+        EncryptionManager = encryptionManager;
+        
         ping.Start();
         ResetTimeout();
     }
@@ -41,8 +47,11 @@ public class TcpNetConnection {
             data.EnterReadOnlyMode();
             var len = BitConverter.GetBytes(data.Length);
             if (isPing) len[7] |= 0b10000000;
-            TcpClient.GetStream().Write(len);
-            data.CopyTo(TcpClient.GetStream());
+
+            var streamToWrite = EncryptionManager?.EncryptionStream ?? (Stream) TcpClient.GetStream();
+            streamToWrite.Write(len);
+            data.CopyTo(streamToWrite);
+            
             data.Stream.Dispose();
         }
     }
@@ -53,15 +62,15 @@ public class TcpNetConnection {
             int len;
             while (!CloseTask.IsCompleted) {
                 try {
-                    if ((len = await TcpClient.GetStream().ReadAsync(buf)) == 0) {
+                    var stream = EncryptionManager?.DecryptionStream ?? (Stream) TcpClient.GetStream();
+                    if ((len = await stream.ReadAsync(buf)) == 0) {
                         await Task.Delay(10);
                         continue;
                     }
 
                     var read = buf[..len];
                     reader.AddData(read);
-                }
-                catch (SocketException) {
+                } catch (SocketException) {
                     Disconnecting();
                 }
             }

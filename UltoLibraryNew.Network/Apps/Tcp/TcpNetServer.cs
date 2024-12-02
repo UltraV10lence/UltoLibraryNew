@@ -10,14 +10,19 @@ public class TcpNetServer {
     private readonly IPEndPoint localEndPoint;
     private readonly List<TcpNetConnection> connections = [];
     private TcpListener? server;
+    
+    public EncryptionManager? EncryptionManager { get; set; }
 
-    public TcpNetServer(string ip, ushort port) {
+    public TcpNetServer(string ip, ushort port, EncryptionManager? encryptionManager = null) {
+        EncryptionManager = encryptionManager;
         localEndPoint = new IPEndPoint(IPAddress.Parse(ip), port);
     }
-    public TcpNetServer(IPAddress ip, ushort port) {
+    public TcpNetServer(IPAddress ip, ushort port, EncryptionManager? encryptionManager = null) {
+        EncryptionManager = encryptionManager;
         localEndPoint = new IPEndPoint(ip, port);
     }
-    public TcpNetServer(IPEndPoint endPoint) {
+    public TcpNetServer(IPEndPoint endPoint, EncryptionManager? encryptionManager = null) {
+        EncryptionManager = encryptionManager;
         localEndPoint = endPoint;
     }
 
@@ -30,7 +35,7 @@ public class TcpNetServer {
                 while (!CloseTask.IsCompleted) {
                     var client = await server.AcceptTcpClientAsync();
                     var ipPort = (IPEndPoint) client.Client.RemoteEndPoint!;
-                    var connection = new TcpNetConnection(client) {
+                    var connection = new TcpNetConnection(client, EncryptionManager) {
                         RemoteIp = ipPort.Address.ToString(),
                         RemotePort = (ushort) ipPort.Port
                     };

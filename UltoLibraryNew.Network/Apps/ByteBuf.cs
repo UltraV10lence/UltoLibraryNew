@@ -9,6 +9,7 @@ public class ByteBuf {
     public long Length => readOnly ? length : Stream.Position;
 
     public void EnterReadOnlyMode() {
+        if (readOnly) return;
         readOnly = true;
         length = Stream.Position;
         Stream.Seek(0, SeekOrigin.Begin);
