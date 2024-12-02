@@ -29,7 +29,7 @@ public static class UltoBytes {
         return found;
     }
     
-    public static string ToString(byte[] array) => string.Join(", ", array);
+    public static string ToString(byte[] array) => $"[{string.Join(", ", array)}]";
     
     public static byte[] XorKey(byte[] data, byte[] key) {
         if (key.Length == 0 || data.Length == 0) return data;
