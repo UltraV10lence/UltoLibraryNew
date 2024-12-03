@@ -43,14 +43,14 @@ public class TcpNetServer {
                     lock (connections) {
                         connections.Add(connection);
                     }
-                    connection.ReceivePackets();
                     OnConnect(connection);
+                    connection.ReceivePackets();
                 }
             }
             catch {
                 Close();
             }
-        });
+        }, TaskCreationOptions.LongRunning);
     }
 
     public void Disconnect(TcpNetConnection connection) {

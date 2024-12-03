@@ -12,7 +12,7 @@ public class TcpNetConnection {
     public string RemoteIp { get; internal set; } = null!;
     public ushort RemotePort { get; internal set; }
 
-    public EncryptionManager? EncryptionManager { get; set; }
+    public EncryptionManager? EncryptionManager { get; private set; }
     
     protected readonly TaskCompletionSource CloseSource = new();
     private readonly PacketReader reader;
@@ -22,16 +22,22 @@ public class TcpNetConnection {
         OnPacketTick = ResetTimeout;
         reader = new PacketReader(this);
         TcpClient = client;
+
+        ChangeEncryptionManager(encryptionManager);
+        
         ping = new Timer(5000);
         ping.Elapsed += (_, _) => {
             Send(new ByteBuf(), true);
         };
-
-        if (client.Connected) encryptionManager?.InitTcpStream(TcpClient.GetStream());
-        EncryptionManager = encryptionManager;
-        
         ping.Start();
         ResetTimeout();
+    }
+
+    public void ChangeEncryptionManager(EncryptionManager? manager) {
+        lock (TcpClient) {
+            if (TcpClient.Connected) manager?.InitTcpStream(TcpClient.GetStream());
+            EncryptionManager = manager;
+        }
     }
 
     private void ResetTimeout() {
@@ -62,7 +68,11 @@ public class TcpNetConnection {
             int len;
             while (!CloseTask.IsCompleted) {
                 try {
-                    var stream = EncryptionManager?.DecryptionStream ?? (Stream) TcpClient.GetStream();
+                    Stream stream;
+                    lock (TcpClient) {
+                        stream = EncryptionManager?.DecryptionStream ?? (Stream) TcpClient.GetStream();
+                    }
+                    
                     if ((len = await stream.ReadAsync(buf)) == 0) {
                         await Task.Delay(10);
                         continue;
@@ -74,7 +84,7 @@ public class TcpNetConnection {
                     Disconnecting();
                 }
             }
-        });
+        }, TaskCreationOptions.LongRunning);
     }
 
     internal void Disconnecting() {
