@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="16af22be-7473-4cf7-89ef-931931f4f2db" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UltoLibraryNew/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UltoLibraryNew/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/Tcp/TcpNetConnection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/Tcp/TcpNetConnection.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/Tcp/TcpNetServer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/Tcp/TcpNetServer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/UltoLibraryNew.Network.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/UltoLibraryNew.Network.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UltoLibraryNew/UltoBytes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew/UltoBytes.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -307,7 +305,8 @@
       <workItem from="1733166392533" duration="4871000" />
       <workItem from="1733171323861" duration="4472000" />
       <workItem from="1733176466330" duration="76000" />
-      <workItem from="1733223774727" duration="1224000" />
+      <workItem from="1733223774727" duration="1670000" />
+      <workItem from="1733227819584" duration="437000" />
     </task>
     <task id="LOCAL-00001" summary="aga">
       <option name="closed" value="true" />
@@ -405,7 +404,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733176265639</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Encryption manager change must also re-init it">
+      <option name="closed" value="true" />
+      <created>1733225406794</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1733225406794</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -427,7 +434,8 @@
     <MESSAGE value="push 2 try" />
     <MESSAGE value="Main library improvements and fixes" />
     <MESSAGE value="why so serious" />
-    <option name="LAST_COMMIT_MESSAGE" value="why so serious" />
+    <MESSAGE value="Encryption manager change must also re-init it" />
+    <option name="LAST_COMMIT_MESSAGE" value="Encryption manager change must also re-init it" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
