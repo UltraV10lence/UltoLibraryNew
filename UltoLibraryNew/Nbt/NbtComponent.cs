@@ -23,7 +23,7 @@ public abstract class NbtComponent {
     protected abstract void WriteValue(BinaryWriter writer);
 
     public void WriteCompressed(Stream writeTo, bool leaveOpen = false) {
-        var compression = new DeflateStream(writeTo, CompressionLevel.SmallestSize, leaveOpen);
+        var compression = UltoBytes.CompressionStream(writeTo, leaveOpen);
         Write(compression);
     }
 
@@ -43,7 +43,7 @@ public abstract class NbtComponent {
     }
 
     public static NbtComponent ReadCompressed(Stream readFrom, bool leaveOpen = false) {
-        var compression = new DeflateStream(readFrom, CompressionMode.Decompress, leaveOpen);
+        var compression = UltoBytes.DecompressionStream(readFrom, leaveOpen);
         return Read(compression);
     }
 

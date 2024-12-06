@@ -162,8 +162,8 @@ public static class UltoBytes {
         }
         if (!leaveOpen) data.Dispose();
     }
-    public static Stream CompressionStream(Stream output, bool leaveOpen = false) {
-        return new BrotliStream(output, CompressionMode.Compress, leaveOpen);
+    public static Stream CompressionStream(Stream output, bool leaveOpen = false, CompressionLevel compressionLevel = CompressionLevel.Optimal) {
+        return new BrotliStream(output, compressionLevel, leaveOpen);
     }
     
     public static byte[] Decompress(byte[] data) {
