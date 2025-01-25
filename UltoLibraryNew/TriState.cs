@@ -9,18 +9,13 @@ public class TriState {
         this.value = value;
     }
 
-    public static readonly TriState TRUE = new (true);
-    public static readonly TriState FALSE = new (false);
-    public static readonly TriState USE_DEFAULT = new (null);
+    public static readonly TriState TRUE = new(true);
+    public static readonly TriState FALSE = new(false);
+    public static readonly TriState USE_DEFAULT = new(null);
     
-    public byte ToByte() {
-        return (byte) (Equals(FALSE) ? 0 : Equals(TRUE) ? 1 : 2);
-    }
-    
-    public bool ToBool() {
-        return Equals(TRUE);
-    }
-    
+    public byte ToByte() => (byte) (Equals(FALSE) ? 0 : Equals(TRUE) ? 1 : 2);
+    public bool ToBool() => Equals(TRUE);
+
     public static TriState FromByte(byte b) => b switch {
         0 => FALSE,
         1 => TRUE,
@@ -28,18 +23,10 @@ public class TriState {
         _ => throw new ArgumentOutOfRangeException(nameof(b), b, null)
     };
     
-    public static bool operator ==(TriState left, TriState right) {
-        return left.Equals(right);
-    }
-    public static bool operator !=(TriState left, TriState right) {
-        return !(left == right);
-    }
-    public static bool operator ==(TriState left, bool right) {
-        return left.Equals(right ? TRUE : FALSE);
-    }
-    public static bool operator !=(TriState left, bool right) {
-        return !(left == right);
-    }
+    public static bool operator==(TriState left, TriState right) => left.Equals(right);
+    public static bool operator!=(TriState left, TriState right) => !(left == right);
+    public static bool operator==(TriState left, bool right) => left.value.HasValue && left.value.Value == right;
+    public static bool operator!=(TriState left, bool right) => !(left == right);
 
     public static explicit operator TriState(bool other) => new(other);
     public static explicit operator TriState(bool? other) => new(other);

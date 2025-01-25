@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using UltoLibraryNew.Nbt.Values;
 
 namespace UltoLibraryNew.Nbt;
 
@@ -33,7 +32,7 @@ public class NbtArray : NbtComponent, IList<NbtComponent> {
     }
 
     public override string AsString() {
-        return $"[{string.Join(", ", values.Select(v => v is NbtString s ? $"\"{s.Value}\"" : v.AsString()))}]";
+        return $"[{string.Join(", ", values.Select(v => v.AsFormattedString()))}]";
     }
 
     public override double AsDouble() {

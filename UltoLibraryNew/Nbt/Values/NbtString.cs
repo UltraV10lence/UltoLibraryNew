@@ -39,6 +39,10 @@ public class NbtString : NbtComponent {
         return Value;
     }
 
+    public override string AsFormattedString() {
+        return $"\"{Value}\"";
+    }
+
     public override double AsDouble() {
         throw new InvalidCastException("Cannot cast nbt string to double");
     }

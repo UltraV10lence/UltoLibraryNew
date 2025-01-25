@@ -5,8 +5,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="16af22be-7473-4cf7-89ef-931931f4f2db" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/ConnectionInitializers/ConnectionInitImpl.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/ConnectionInitializers/ConnectionInitializer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/ConnectionInitializers/ServerConnectionInitImpl.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/ConnectionInitializers/ServerConnectionInitializer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/DisconnectReason.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/Packets/PacketMetadata.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/Packets/PacketReader.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/Packets/PacketTypeIdentifier.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/Packets/SystemPackets/ChannelsInfoPacket.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/Packets/SystemPackets/PingPacket.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/TcpChannel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/TcpClient.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/TcpConnection.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/TcpServer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UltoLibraryNew/StreamUtils.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UltoLibraryNew/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UltoLibraryNew/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/ByteBuf.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/ByteBuf.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/PacketReader.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/Tcp/EncryptionManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/Tcp/TcpNetClient.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/Tcp/TcpNetConnection.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/Tcp/TcpNetServer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/TcpDecryptionStream.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Apps/TcpEncryptionStream.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/UltoLibraryNew.Network.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew.Network/UltoLibraryNew.Network.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Web/HttpAccessControl.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Web/HttpNetRequest.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Web/HttpNetResponse.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Web/HttpNetServer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UltoLibraryNew.Network/Web/HttpRequestMethod.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UltoLibraryNew/Nbt/NbtArray.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew/Nbt/NbtArray.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UltoLibraryNew/Nbt/NbtComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew/Nbt/NbtComponent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UltoLibraryNew/Nbt/NbtContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew/Nbt/NbtContainer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UltoLibraryNew/Nbt/Values/NbtString.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew/Nbt/Values/NbtString.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UltoLibraryNew/StringMatcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew/StringMatcher.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UltoLibraryNew/TriState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew/TriState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UltoLibraryNew/UltoBytes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew/UltoBytes.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UltoLibraryNew/UltoLibraryNew.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew/UltoLibraryNew.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UltoLibraryNew/Vector2.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UltoLibraryNew/Vector2.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +59,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;UltraV10lence&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/UltraV10lence/UltoLibraryNew&quot;,
+    &quot;accountId&quot;: &quot;c5c62fb3-b362-4b6c-b872-f1f812aef0b0&quot;
+  }
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/5535e31a712343a63f5d7d796cd874e563e5ac14/src/libraries/Common/src/System/SR.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/5535e31a712343a63f5d7d796cd874e563e5ac14/src/libraries/System.ComponentModel.Primitives/src/System/ComponentModel/Component.cs" root0="SKIP_HIGHLIGHTING" />
@@ -43,24 +92,46 @@
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/808851b07acfa1c5c94b0d4f9fb50debedb2df70/src/libraries/System.Net.Sockets/src/System/Net/Sockets/NetworkStream.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/808851b07acfa1c5c94b0d4f9fb50debedb2df70/src/libraries/System.Net.Sockets/src/System/Net/Sockets/TCPClient.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/808851b07acfa1c5c94b0d4f9fb50debedb2df70/src/libraries/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/Formatters/Binary/BinaryFormatter.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3d9344025b7c45d4a32c7a0cbcd4a7cb40918/21/cd04e797/CompressionMode.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3d9344025b7c45d4a32c7a0cbcd4a7cb40918/35/052e88d3/CompressionLevel.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/eff097a5c5944256896b85e55ee172b485918/12/4954db77/SocketShutdown.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/1bdc36dd4183e28bfc782d741e368f6faf4ad8397bd232ec65613e2373e/Object.CoreCLR.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/20c8f61ae3dadf2e97415f331439363aa8e26201167dbf4bc4d4ae59ce7c4/BinaryReader.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/297ddfd6fbf145994a8b7136ad9ca52a87ba9deac4a95b2ad10d8f3fa5746/Double.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2a8a2211ff7b6ce5ab05b41d416904ec475a643fb8cbb2261f85a750b13217/Console.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2c8e7ca976f350cba9836d5565dac56b11e0b56656fa786460eb1395857a6fa/ThrowHelper.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/36f346b6c0454bc8a6afa7aed38119fe5bbffcc983298d9bfa4dbd5f49461f/Monitor.CoreCLR.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/387238ef9c8f8c6b1dccf4dcba4eed0e459454919b2e4b9cad11a5071789df/Dictionary.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/4045ad381dc69b9a8c076afe4c122961b5a86158d8dd0c76c117243ce72b/TimeSpan.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5553559cdb4b5664893497ec3d7831e41e3f7cff9dd2ef3258115769f70aa/DateTime.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5abecb93434c4299acd01d522fdf8da2c9a910/_2f2be/IUtf8SpanFormattable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/62496113146eac84692c31b6ce27a56d3556b9b0cba6a8a2b347c8db215af0f2/Timer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/671d81be2ea413686d0b8a56c1e5f7bd8cc3b9f7c18afaa1259aac44635df9c/NetworkStream.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6859c75c78666435198faf42d3bf3ff4ee1372c7a98a34fc18a892c5f879c41/BitConverter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6ca9eeed5ec92b470cfd8148d94445b1da079212dd2884770655565a5218342/TCPClient.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6d8578f5b52e9466a7f88eff9cc18e85d4128d5517aa466b2daa9a1747f30/BinaryWriter.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/72e5853ed6f2c1967eff9d6f0cf6ba12744c8978c516cbc5e74d992944ab/ArgumentOutOfRangeException.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/91eb508ee865dbd2cd2c5cf2f41dbc1cd303f9874d06729ab93707f1c8ef2/TcpValidationHelpers.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/93cc83e0618b5a13adb149e96b5513b5ea5e46921c2bdbef1ceaa6973363be36/TimeSpanFormat.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9a6b1457cbcf17db31a383ba49ef9bcc786cf3ef77146d997eee499b27a46d/Object.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9eda537f15ea23cdfae523c19e87eb303a3ded88937ae7e55919387a43f70/ExecutionContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a85d21ec8b722dab1e3a8b50b24b3eb3a0733f9ffeec3db52ee079cfa1c59/HashCode.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/aa582139b064a6639150c535ff346128373d653d998de78761d86ccaa44794/IPEndPoint.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b05fc3ef644b7632d4481b3defa11634da02637d896cb5eca3eca7cf2f3ee3/String.Manipulation.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b7208b3f72528d22781d25fde9a55271bdf2b5aade4f03b1324579a25493cd8/List.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b855fbc1e37bfe07afce284794c772bc4a285ccb8e9d3fd8e71deea7f82d9a/TextWriter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c38712da69ab568dd5252aa66b4ecd28902981ede1307a1c7acc7561f16/JulianCalendar.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c7a35c9f57445c41749f1d9e37585df6686f5b047b2aa3329e65214dbd93df/ThreadPoolWorkQueue.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/cfcfa3591cfe8e7d99db20c818f3316e394a8bffff43622336f3662fe8971e/Stream.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d791c3eb25297f33ebfc088aa821fe66a8a3a295b63fbd1a1d8f4b2e77e1017/ReadOnlySpan.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e534bbce6a3fef6e3cf88085f8276c29cec1f1b118daaebce187d6d28f4f15e/System.SR.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e6e79ecb777a0b73b2fe2199df98a045e42385c51d6b8dc77d1f7e0e67177/Marshal.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e7dbd6fe331ff9a3c4b24dd470ec1f19a71b7c5acf258b81ae7f761cd2b319b/Type.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e84cd252abbd67a7bad1f25e4bdcf1f5487f724dd9aa8ec102160f70cabe/SymmetricAlgorithm.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f0d5842055c33862fb8e733d61c64dd5fe95a1f13d5a45db2e3b17b9ef0ac/MemoryStream.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ec384d41f3d35d8a3f4adc4f7c0a379acbcfc52088a27393221a718839c7ff/CultureInfo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f0d5842055c33862fb8e733d61c64dd5fe95a1f13d5a45db2e3b17b9ef0ac/MemoryStream.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f266282474a9bf340a1b24748138e26ef17c3d5a6b22aba23238fb32c227ce/TaskToAsyncResult.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f4a51af234b9d918976920e05776219c43a0c22e90cc28c5873139d6fdc1485f/Socket.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -96,6 +167,7 @@
     &quot;.NET Static Method.UltoLibraryNew.Network.Test.Test5.executor&quot;: &quot;Run&quot;,
     &quot;.NET Static Method.UltoLibraryNew.Network.TestClient.Main.executor&quot;: &quot;Run&quot;,
     &quot;.NET Static Method.UltoLibraryNew.Network.TestServer.Main.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Static Method.UltoLibraryNew.Network.Tests.Main.executor&quot;: &quot;Run&quot;,
     &quot;.NET Static Method.UltoLibraryNew.Network.a.Main.executor&quot;: &quot;Run&quot;,
     &quot;.NET Static Method.UltoLibraryNew.Network.a.MainS.executor&quot;: &quot;Run&quot;,
     &quot;.NET Static Method.UltoLibraryNew.NeuralNetworks.Tests.Main.executor&quot;: &quot;Run&quot;,
@@ -117,50 +189,10 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.environmentSetup&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.toDoOptions&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected=".NET Static Method.UltoLibraryNew.Network.Client.Main">
-    <configuration name="UltoLibraryNew.Network.Client.Main" type="DotNetStaticMethod" factoryName=".NET Static Method" temporary="true">
-      <option name="EXE_PATH" value="D:\Program Files\JetBrains\Rider\lib\ReSharperHost\JetLauncherILc.exe" />
-      <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="PASS_PARENT_ENVS" value="1" />
-      <option name="USE_EXTERNAL_CONSOLE" value="0" />
-      <option name="USE_MONO" value="0" />
-      <option name="RUNTIME_ARGUMENTS" value="" />
-      <option name="PROJECT_PATH" value="$PROJECT_DIR$/UltoLibraryNew.Network/UltoLibraryNew.Network.csproj" />
-      <option name="PROJECT_TFM" value="net8.0" />
-      <option name="CLASS_NAME" value="UltoLibraryNew.Network.Client" />
-      <option name="METHOD_NAME" value="Main" />
-      <method v="2">
-        <option name="Build" />
-      </method>
-    </configuration>
-    <configuration name="UltoLibraryNew.Network.Server.Main" type="DotNetStaticMethod" factoryName=".NET Static Method" temporary="true">
-      <option name="EXE_PATH" value="D:\Program Files\JetBrains\Rider\lib\ReSharperHost\JetLauncherILc.exe" />
-      <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="PASS_PARENT_ENVS" value="1" />
-      <option name="USE_EXTERNAL_CONSOLE" value="0" />
-      <option name="USE_MONO" value="0" />
-      <option name="RUNTIME_ARGUMENTS" value="" />
-      <option name="PROJECT_PATH" value="$PROJECT_DIR$/UltoLibraryNew.Network/UltoLibraryNew.Network.csproj" />
-      <option name="PROJECT_TFM" value="net8.0" />
-      <option name="CLASS_NAME" value="UltoLibraryNew.Network.Server" />
-      <option name="METHOD_NAME" value="Main" />
-      <method v="2">
-        <option name="Build" />
-      </method>
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue=".NET Static Method.UltoLibraryNew.Network.Client.Main" />
-        <item itemvalue=".NET Static Method.UltoLibraryNew.Network.Server.Main" />
-      </list>
-    </recent_temporary>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -308,6 +340,20 @@
       <workItem from="1733223774727" duration="1670000" />
       <workItem from="1733227819584" duration="816000" />
       <workItem from="1733493354270" duration="99000" />
+      <workItem from="1733494929086" duration="214000" />
+      <workItem from="1733495919882" duration="275000" />
+      <workItem from="1735148213632" duration="138000" />
+      <workItem from="1737217177706" duration="1354000" />
+      <workItem from="1737234427236" duration="7503000" />
+      <workItem from="1737278261815" duration="13485000" />
+      <workItem from="1737298439224" duration="9867000" />
+      <workItem from="1737384317967" duration="6243000" />
+      <workItem from="1737395258628" duration="10922000" />
+      <workItem from="1737466138200" duration="20452000" />
+      <workItem from="1737555316082" duration="1239000" />
+      <workItem from="1737645876615" duration="59000" />
+      <workItem from="1737837432050" duration="1559000" />
+      <workItem from="1737844152111" duration="2103000" />
     </task>
     <task id="LOCAL-00001" summary="aga">
       <option name="closed" value="true" />
@@ -421,7 +467,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733228533478</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="changed NBT compression method controlled by UltoBytes">
+      <option name="closed" value="true" />
+      <created>1733495121475</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1733495121475</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -429,6 +483,17 @@
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="aga" />
@@ -445,7 +510,8 @@
     <MESSAGE value="why so serious" />
     <MESSAGE value="Encryption manager change must also re-init it" />
     <MESSAGE value="Some main library fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Some main library fixes" />
+    <MESSAGE value="changed NBT compression method controlled by UltoBytes" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed NBT compression method controlled by UltoBytes" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

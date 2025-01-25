@@ -6,7 +6,7 @@
         <Nullable>enable</Nullable>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Authors>UltraV10lence</Authors>
-        <Version>3-x013</Version>
+        <Version>4-x001</Version>
         <Title>UltoLibraryNew Network</Title>
         <PackageIcon>ultolib-net.png</PackageIcon>
         <LangVersion>12</LangVersion>

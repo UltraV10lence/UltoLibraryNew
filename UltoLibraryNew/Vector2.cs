@@ -9,7 +9,8 @@ public class Vector2 : IEquatable<Vector2> {
     
     public double X, Y;
 
-    public double Length => Math.Sqrt(X * X + Y * Y);
+    public double SquaredLength => X * X + Y * Y;
+    public double Length => Math.Sqrt(SquaredLength);
     public Vector2 Normalized => new(X / Length, Y / Length);
     public Vector2 Abs => new(Math.Abs(X), Math.Abs(Y));
     
@@ -30,6 +31,17 @@ public class Vector2 : IEquatable<Vector2> {
                 _ => throw new IndexOutOfRangeException()
             };
         }
+        set {
+            switch (i) {
+                case 0:
+                    X = value;
+                    break;
+                case 1:
+                    Y = value;
+                    break;
+            }
+            throw new IndexOutOfRangeException();
+        }
     }
 
     public void Normalize() {
@@ -38,7 +50,7 @@ public class Vector2 : IEquatable<Vector2> {
         Y = norm.Y;
     }
 
-    public Vector2 Distance2(Vector2 other) {
+    public Vector2 AbsoluteDistance2(Vector2 other) {
         return (other - this).Abs;
     }
 
@@ -61,13 +73,9 @@ public class Vector2 : IEquatable<Vector2> {
     }
 
     public Vector2 Rotate(Vector2 center, double angle) {
-        var rad = angle * Math.PI / 180;
-        var ca = Math.Cos(rad);
-        var sa = Math.Sin(rad);
-
         var translated = this - center;
         
-        return new Vector2(translated.X * ca - translated.Y * sa, translated.X * sa + translated.Y * ca) + center;
+        return translated.Rotate(angle) + center;
     }
 
     /// <summary>
@@ -81,7 +89,7 @@ public class Vector2 : IEquatable<Vector2> {
         return n1.X * n2.X + n1.Y * n2.Y;
     }
     
-    public void MoveTowardsFor(Vector2 target, double stepSize) {
+    public void MoveTowards(Vector2 target, double stepSize) {
         var trans = (target - this).Normalized * stepSize;
         X += trans.X;
         Y += trans.Y;
@@ -91,40 +99,23 @@ public class Vector2 : IEquatable<Vector2> {
         return $"({X}, {Y})";
     }
 
-    public static Vector2 operator+(Vector2 a, Vector2 b) {
-        return new Vector2(a.X + b.X, a.Y + b.Y);
-    }
-    public static Vector2 operator+(Vector2 a, double scalar) {
-        return new Vector2(a.X + scalar, a.Y + scalar);
-    }
-    public static Vector2 operator-(Vector2 a) {
-        return new Vector2(-a.X, -a.Y);
-    }
-    public static Vector2 operator-(Vector2 a, Vector2 b) {
-        return new Vector2(a.X - b.X, a.Y - b.Y);
-    }
-    public static Vector2 operator-(Vector2 a, double scalar) {
-        return new Vector2(a.X - scalar, a.Y - scalar);
-    }
-    public static Vector2 operator*(Vector2 a, Vector2 b) {
-        return new Vector2(a.X * b.X, a.Y * b.Y);
-    }
-    public static Vector2 operator*(Vector2 a, double scalar) {
-        return new Vector2(a.X * scalar, a.Y * scalar);
-    }
-    public static Vector2 operator/(Vector2 a, Vector2 b) {
-        return new Vector2(a.X / b.X, a.Y / b.Y);
-    }
-    public static Vector2 operator/(Vector2 a, double scalar) {
-        return new Vector2(a.X / scalar, a.Y / scalar);
-    }
-    public static bool operator==(Vector2 a, Vector2 b) {
-        return Math.Abs(a.X - b.X) < ComparisonEpsilon && Math.Abs(a.Y - b.Y) < ComparisonEpsilon;
-    }
-    public static bool operator!=(Vector2 a, Vector2 b) { return !(a == b); }
+    public static Vector2 operator+(Vector2 a, Vector2 b) => new(a.X + b.X, a.Y + b.Y);
+    public static Vector2 operator+(Vector2 a, double scalar) => new(a.X + scalar, a.Y + scalar);
+    public static Vector2 operator-(Vector2 a) => new(-a.X, -a.Y);
+    public static Vector2 operator-(Vector2 a, Vector2 b) => new(a.X - b.X, a.Y - b.Y);
+    public static Vector2 operator-(Vector2 a, double scalar) => new(a.X - scalar, a.Y - scalar);
+    public static Vector2 operator*(Vector2 a, Vector2 b) => new(a.X * b.X, a.Y * b.Y);
+    public static Vector2 operator*(Vector2 a, double scalar) => new(a.X * scalar, a.Y * scalar);
+    public static Vector2 operator/(Vector2 a, Vector2 b) => new(a.X / b.X, a.Y / b.Y);
+    public static Vector2 operator/(Vector2 a, double scalar) => new(a.X / scalar, a.Y / scalar);
+    public static bool operator==(Vector2 a, Vector2 b) => Math.Abs(a.X - b.X) < ComparisonEpsilon && Math.Abs(a.Y - b.Y) < ComparisonEpsilon;
+    public static bool operator!=(Vector2 a, Vector2 b) => Math.Abs(a.X - b.X) >= ComparisonEpsilon || Math.Abs(a.Y - b.Y) >= ComparisonEpsilon;
 
     public static implicit operator Point(Vector2 self) => new((int) self.X, (int) self.Y);
     public static explicit operator Vector2(Point other) => new(other.X, other.Y);
+
+    public static implicit operator System.Numerics.Vector2(Vector2 self) => new((int) self.X, (int) self.Y);
+    public static explicit operator Vector2(System.Numerics.Vector2 other) => new(other.X, other.Y);
 
     public static Vector2 Max(Vector2 a, Vector2 b) {
         return new Vector2(Math.Max(a.X, b.X), Math.Max(a.Y, b.Y));
@@ -151,10 +142,10 @@ public class Vector2 : IEquatable<Vector2> {
         return HashCode.Combine(X, Y);
     }
 
-    public static Vector2 Zero => new (0, 0);
-    public static Vector2 One => new (1, 1);
-    public static Vector2 Up => new (0, 1);
-    public static Vector2 Down => new (0, -1);
-    public static Vector2 Left => new (-1, 0);
-    public static Vector2 Right => new (1, 0);
+    public static Vector2 Zero => new(0, 0);
+    public static Vector2 One => new(1, 1);
+    public static Vector2 Up => new(0, 1);
+    public static Vector2 Down => new(0, -1);
+    public static Vector2 Left => new(-1, 0);
+    public static Vector2 Right => new(1, 0);
 }

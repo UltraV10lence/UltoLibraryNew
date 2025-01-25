@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Diagnostics.CodeAnalysis;
-using UltoLibraryNew.Nbt.Values;
 
 namespace UltoLibraryNew.Nbt;
 
@@ -34,7 +33,7 @@ public class NbtContainer : NbtComponent, IDictionary<string, NbtComponent> {
     }
 
     public override string AsString() {
-        return "{" + string.Join(", ", map.Select(v => $"\"{v.Key}\": {(v.Value is NbtString s ? $"\"{s.Value}\"" : v.Value.AsString())}")) + "}";
+        return '{' + string.Join(", ", map.Select(v => $"\"{v.Key}\": {v.Value.AsFormattedString()}")) + '}';
     }
 
     public override double AsDouble() {

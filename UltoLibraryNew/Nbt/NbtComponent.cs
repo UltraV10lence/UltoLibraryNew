@@ -14,6 +14,7 @@ public abstract class NbtComponent {
     public abstract int AsInt();
     public abstract long AsLong();
     public abstract string AsString();
+    public virtual string AsFormattedString() => AsString();
     public abstract double AsDouble();
     public abstract DateTime AsDateTime();
     public abstract TimeSpan AsTimeSpan();

@@ -1,8 +1,8 @@
 using System.Text;
 
-namespace UltoLibraryNew.Network.Apps;
+namespace UltoLibraryNew.Network;
 
-public class ByteBuf {
+public class ByteBuf : IDisposable, IAsyncDisposable {
     public readonly Stream Stream;
     private bool readOnly;
     private long length;
@@ -10,6 +10,7 @@ public class ByteBuf {
 
     public void EnterReadOnlyMode() {
         if (readOnly) return;
+        
         readOnly = true;
         length = Stream.Position;
         Stream.Seek(0, SeekOrigin.Begin);
@@ -24,10 +25,17 @@ public class ByteBuf {
     internal ByteBuf(Stream data) {
         Stream = data;
     }
-
-    public ByteBuf Write(bool data) {
+    
+    public ByteBuf CopyFrom(Stream data) {
         CheckCanWrite();
-        Stream.WriteByte((byte) (data ? 1 : 0));
+        data.CopyTo(Stream);
+        return this;
+    }
+    public void CopyTo(Stream data) => Stream.CopyTo(data);
+    
+    public ByteBuf Write(byte[] data) {
+        CheckCanWrite();
+        Stream.Write(data);
         return this;
     }
     public ByteBuf Write(byte data) {
@@ -35,65 +43,23 @@ public class ByteBuf {
         Stream.WriteByte(data);
         return this;
     }
-    public ByteBuf Write(byte[] data) {
-        CheckCanWrite();
-        Stream.Write(data);
-        return this;
-    }
-    public ByteBuf CopyFrom(Stream data) {
-        CheckCanWrite();
-        data.CopyTo(Stream);
-        return this;
-    }
-    public ByteBuf Write(short data) {
-        CheckCanWrite();
-        Stream.Write(BitConverter.GetBytes(data));
-        return this;
-    }
-    public ByteBuf Write(ushort data) {
-        CheckCanWrite();
-        Stream.Write(BitConverter.GetBytes(data));
-        return this;
-    }
-    public ByteBuf Write(int data) {
-        CheckCanWrite();
-        Stream.Write(BitConverter.GetBytes(data));
-        return this;
-    }
-    public ByteBuf Write(uint data) {
-        CheckCanWrite();
-        Stream.Write(BitConverter.GetBytes(data));
-        return this;
-    }
-    public ByteBuf Write(long data) {
-        CheckCanWrite();
-        Stream.Write(BitConverter.GetBytes(data));
-        return this;
-    }
-    public ByteBuf Write(ulong data) {
-        CheckCanWrite();
-        Stream.Write(BitConverter.GetBytes(data));
-        return this;
-    }
-    public ByteBuf Write(double data) {
-        CheckCanWrite();
-        Stream.Write(BitConverter.GetBytes(data));
-        return this;
-    }
-    public ByteBuf Write(float data) {
-        CheckCanWrite();
-        Stream.Write(BitConverter.GetBytes(data));
-        return this;
-    }
+    public ByteBuf Write(bool data) => Write((byte) (data ? 1 : 0));
+    public ByteBuf Write(short data) => Write(BitConverter.GetBytes(data));
+    public ByteBuf Write(ushort data) => Write(BitConverter.GetBytes(data));
+    public ByteBuf Write(int data) => Write(BitConverter.GetBytes(data));
+    public ByteBuf Write(uint data) => Write(BitConverter.GetBytes(data));
+    public ByteBuf Write(long data) => Write(BitConverter.GetBytes(data));
+    public ByteBuf Write(ulong data) => Write(BitConverter.GetBytes(data));
+    public ByteBuf Write(double data) => Write(BitConverter.GetBytes(data));
+    public ByteBuf Write(float data) => Write(BitConverter.GetBytes(data));
+    
     public ByteBuf Write(string data, Encoding? enc = null) {
-        CheckCanWrite();
         enc ??= Encoding.UTF8;
         var str = enc.GetBytes(data);
         Write7BitEncodedInt(str.Length);
         Stream.Write(str);
         return this;
     }
-
     public ByteBuf Write7BitEncodedInt(int data) {
         CheckCanWrite();
         
@@ -120,45 +86,21 @@ public class ByteBuf {
         return this;
     }
 
-    public bool ReadBool() {
-        return Stream.ReadByte() == 1;
-    }
-
-    public byte ReadByte() {
-        return (byte) Stream.ReadByte();
-    }
     public byte[] ReadBytes(int len) {
         var buf = new byte[len];
         Stream.ReadExactly(buf);
         return buf;
     }
-    public void CopyTo(Stream data) {
-        Stream.CopyTo(data);
-    }
-    public short ReadShort() {
-        return BitConverter.ToInt16(ReadBytes(2));
-    }
-    public ushort ReadUShort() {
-        return BitConverter.ToUInt16(ReadBytes(2));
-    }
-    public int ReadInt() {
-        return BitConverter.ToInt32(ReadBytes(4));
-    }
-    public uint ReadUInt() {
-        return BitConverter.ToUInt32(ReadBytes(4));
-    }
-    public long ReadLong() {
-        return BitConverter.ToInt64(ReadBytes(8));
-    }
-    public ulong ReadULong() {
-        return BitConverter.ToUInt64(ReadBytes(8));
-    }
-    public double ReadDouble() {
-        return BitConverter.ToDouble(ReadBytes(8));
-    }
-    public float ReadFloat() {
-        return BitConverter.ToSingle(ReadBytes(4));
-    }
+    public bool ReadBool() => Stream.ReadByte() == 1;
+    public byte ReadByte() => (byte) Stream.ReadByte();
+    public short ReadShort() => BitConverter.ToInt16(ReadBytes(2));
+    public ushort ReadUShort() => BitConverter.ToUInt16(ReadBytes(2));
+    public int ReadInt() => BitConverter.ToInt32(ReadBytes(4));
+    public uint ReadUInt() => BitConverter.ToUInt32(ReadBytes(4));
+    public long ReadLong() => BitConverter.ToInt64(ReadBytes(8));
+    public ulong ReadULong() => BitConverter.ToUInt64(ReadBytes(8));
+    public double ReadDouble() => BitConverter.ToDouble(ReadBytes(8));
+    public float ReadFloat() => BitConverter.ToSingle(ReadBytes(4));
     public string ReadString(Encoding? enc = null) {
         enc ??= Encoding.UTF8;
         var len = Read7BitEncodedInt();
@@ -217,5 +159,15 @@ public class ByteBuf {
 
     public void CheckCanWrite() {
         if (readOnly) throw new Exception("Cannot write into stream when readonly mode is enabled");
+    }
+
+    public void Dispose() {
+        Stream.Dispose();
+        GC.SuppressFinalize(this);
+    }
+
+    public async ValueTask DisposeAsync() {
+        await Stream.DisposeAsync();
+        GC.SuppressFinalize(this);
     }
 }

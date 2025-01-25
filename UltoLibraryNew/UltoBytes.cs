@@ -5,33 +5,33 @@ using System.Text;
 namespace UltoLibraryNew; 
 
 public static class UltoBytes {
-    public static byte[] AppendArrays(byte[] first, params byte[][] other) {
-        using var newArray = new MemoryStream(first.Length + other.Sum(a => a.Length));
+    public static byte[] Append(this byte[] self, params byte[][] other) {
+        using var newArray = new MemoryStream(self.Length + other.Sum(a => a.Length));
         
-        newArray.Write(first);
+        newArray.Write(self);
         foreach (var array in other) {
             newArray.Write(array);
         }
         return newArray.ToArray();
     }
     
-    public static byte[] SubArray(byte[] array, int start, int length) =>
-        new ArraySegment<byte>(array, start, length).ToArray();
+    public static byte[] SubArray(this byte[] self, int start, int length) =>
+        new ArraySegment<byte>(self, start, length).ToArray();
     
-    public static bool ContainsArray(byte[] array, byte[] value) {
+    public static bool ContainsArray(this byte[] self, byte[] value) {
         if (value.Length == 0) return true;
-        if (value.Length > array.Length) return false;
+        if (value.Length > self.Length) return false;
         
         var i = 0;
         bool found;
-        while (!(found = array.Skip(i).Take(value.Length).SequenceEqual(value)) && i < array.Length - value.Length) i++;
+        while (!(found = self.Skip(i).Take(value.Length).SequenceEqual(value)) && i < self.Length - value.Length) i++;
         
         return found;
     }
     
-    public static string ToString(byte[] array) => $"[{string.Join(", ", array)}]";
+    public static string ToFormattedString(this byte[] array) => $"[{string.Join(", ", array)}]";
     
-    public static byte[] XorKey(byte[] data, byte[] key) {
+    public static byte[] XorKey(this byte[] data, byte[] key) {
         if (key.Length == 0 || data.Length == 0) return data;
 
         var dOut = new byte[data.Length];
@@ -49,50 +49,31 @@ public static class UltoBytes {
         return bytes;
     }
 
-    public static byte[] RandomSecure(int length) {
-        return RandomNumberGenerator.GetBytes(length);
-    }
-    
-    public static string ToBase64Str(byte[] bytes) {
-        return Convert.ToBase64String(bytes);
-    }
-    public static byte[] ToBase64Bytes(byte[] bytes, Encoding? encoding = null) {
+    public static byte[] RandomSecure(int length) => RandomNumberGenerator.GetBytes(length);
+
+    public static string ToBase64Str(this byte[] bytes) => Convert.ToBase64String(bytes);
+    public static byte[] ToBase64Bytes(this byte[] bytes, Encoding? encoding = null) {
         encoding ??= Encoding.UTF8;
         return encoding.GetBytes(ToBase64Str(bytes));
     }
     
-    public static byte[] FromBase64Str(string str) {
-        return Convert.FromBase64String(str);
-    }
-    public static byte[] FromBase64Bytes(byte[] bytes, Encoding? encoding = null) {
+    public static byte[] FromBase64Str(string str) => Convert.FromBase64String(str);
+    public static byte[] FromBase64Bytes(this byte[] bytes, Encoding? encoding = null) {
         encoding ??= Encoding.UTF8;
         return FromBase64Str(encoding.GetString(bytes));
     }
     
-    public static string ToHexStr(byte[] bytes) {
-        return BitConverter.ToString(bytes).Replace("-", "");
-    }
+    public static string ToHexStr(this byte[] bytes) => BitConverter.ToString(bytes).Replace("-", "");
     public static byte[] FromHexStr(string str) {
         var bytes = new byte[str.Length / 2];
         for (var i = 0; i < str.Length; i += 2) bytes[i / 2] = Convert.ToByte(str.Substring(i, 2), 16);
         return bytes;
     }
     
-    public static byte[] HashSHA1(byte[] data) {
-        return SHA1.HashData(data);
-    }
-
-    public static byte[] HashSHA256(byte[] data) {
-        return SHA256.HashData(data);
-    }
-
-    public static byte[] HashSHA512(byte[] data) {
-        return SHA512.HashData(data);
-    }
-
-    public static byte[] HashMD5(byte[] data) {
-        return MD5.HashData(data);
-    }
+    public static byte[] HashSHA1(this byte[] data) => SHA1.HashData(data);
+    public static byte[] HashSHA256(this byte[] data) => SHA256.HashData(data);
+    public static byte[] HashSHA512(this byte[] data) => SHA512.HashData(data);
+    public static byte[] HashMD5(this byte[] data) => MD5.HashData(data);
 
     public static byte[] GenerateAesKey() {
         using var aes = Aes.Create();
