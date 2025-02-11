@@ -18,14 +18,14 @@ public class TcpConnection {
     internal readonly PacketTypeIdentifier PacketIdentifier = new();
     
     private readonly PacketReader reader = new();
-    private readonly Dictionary<byte, TcpChannel> registeredChannels = [];
-    private readonly TcpChannel systemChannel;
     private readonly Timer pingTimer = new(TimeSpan.FromSeconds(5));
+    private readonly List<IPacketListener> listeners = [];
 
     private Timer? timeoutTimer;
     private TcpClient? client;
     private TcpServer? server;
-
+    
+    public event Action<object> ConsumePacket = _ => {}; 
     public event Action<DisconnectReason> OnDisconnect = _ => { };
     
     internal TcpConnection(string remoteIp, ushort remotePort, NetworkStream nativeStream, bool isServerSide) {
@@ -33,23 +33,10 @@ public class TcpConnection {
         RemotePort = remotePort;
         NativeStream = nativeStream;
         IsServerSide = isServerSide;
-        systemChannel = new TcpChannel("sc_system", 0, this);
-        
-        registeredChannels.Add(0, systemChannel);
-        systemChannel.RegisterPacketListener<ChannelsInfoPacket>(info => {
-            if (IsServerSide) throw new ArgumentException("Cannot initialize channels from client");
-            
-            foreach (var channel in info.Channels) {
-                registeredChannels.Add(channel.Key, new TcpChannel(channel.Value, channel.Key, this));
-            }
-
-            IsInitialized = true;
-            client!.OnConnectDone(this);
-        });
 
         pingTimer.Elapsed += (_, _) => {
             try {
-                systemChannel.Send(new PingPacket());
+                Send(new PingPacket());
             } catch { }
         };
         pingTimer.AutoReset = true;
@@ -79,6 +66,8 @@ public class TcpConnection {
     }
 
     internal void Initialize(ConnectionInitializer initializer) {
+        IsInitialized = true;
+        
         if (!IsServerSide) {
             client = ((ConnectionInitImpl) initializer).Client;
             return;
@@ -87,26 +76,8 @@ public class TcpConnection {
         if (initializer is not ServerConnectionInitializer)
             throw new ArgumentException("Cannot initialize server connection without server connection initializer");
 
-        byte i = 0;
         var init = (ServerConnectionInitImpl) initializer;
         server = init.Server;
-        var channels = init.Channels.ToDictionary(_ => ++i);
-
-        foreach (var channel in channels) {
-            registeredChannels.Add(channel.Key, channel.Value);
-        }
-        
-        SendChannelsRegistry();
-        IsInitialized = true;
-    }
-
-    public TcpChannel GetChannel(string identifier) {
-        return registeredChannels.Single(c => c.Value.Identifier == identifier).Value;
-    }
-
-    private void SendChannelsRegistry() {
-        var dic = registeredChannels.ToDictionary(channel => channel.Key, channel => channel.Value.Identifier);
-        systemChannel.Send(new ChannelsInfoPacket(dic));
     }
 
     private void StartReadPackets() {
@@ -116,7 +87,7 @@ public class TcpConnection {
             while (!IsClosed) {
                 int bytesRead;
                 try {
-                    bytesRead = await NativeStream.ReadAsync(buffer, 0, buffer.Length);
+                    bytesRead = await NativeStream.ReadAsync(buffer);
                 } catch {
                     Disconnect(DisconnectReason.StreamClosed);
                     return;
@@ -130,16 +101,49 @@ public class TcpConnection {
                 ResetTimeoutTimer();
                 reader.AppendData(buffer, bytesRead, (buf, meta) => {
                     var packet = PacketIdentifier.Decode(meta.DataType, buf);
-                    var channel = registeredChannels.Single(c => c.Key == meta.ChannelId);
 
                     try {
-                        channel.Value.AcceptPacket(packet);
+                        AcceptPacket(packet);
                     } catch {
                         Disconnect(DisconnectReason.Exception);
                     }
                 });
             }
         });
+    }
+    
+    public void Send(object packet) {
+        var packetId = PacketIdentifier.FetchPacketId(packet);
+        if (!IsInitialized && packetId >= 0)
+            throw new ArgumentException("Cannot send non-system packets while initializing");
+        
+        try {
+            PacketIdentifier.Encode(NativeStream, packet, packetId, this);
+        } catch {
+            Disconnect(DisconnectReason.Exception);
+        }
+    }
+
+    public void RegisterPacketListener<T>(Action<T> consumer) {
+        lock (listeners) {
+            listeners.Add(new PacketListener<T>(consumer));
+        }
+    }
+
+    internal void AcceptPacket(object packet) {
+        var type = packet.GetType();
+
+        lock (listeners) {
+            var listener = listeners.Where(l => l.Type == type);
+            if (listener.Any()) {
+                foreach (var packetListener in listener) {
+                    packetListener.Consume(packet);
+                }
+                return;
+            }
+        }
+        
+        ConsumePacket(packet);
     }
 
     public void Disconnect() {

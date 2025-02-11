@@ -4,8 +4,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UltoLibraryNew", "UltoLibra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UltoLibraryNew.Network", "UltoLibraryNew.Network\UltoLibraryNew.Network.csproj", "{30EDE071-4CAD-427C-978E-E4384B0B5935}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UltoLibraryNew.NeuralNetworks", "UltoLibraryNew.NeuralNetworks\UltoLibraryNew.NeuralNetworks.csproj", "{92FAA502-0F45-4533-918D-4117BF9304D2}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,9 +18,5 @@ Global
 		{30EDE071-4CAD-427C-978E-E4384B0B5935}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30EDE071-4CAD-427C-978E-E4384B0B5935}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30EDE071-4CAD-427C-978E-E4384B0B5935}.Release|Any CPU.Build.0 = Release|Any CPU
-		{92FAA502-0F45-4533-918D-4117BF9304D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{92FAA502-0F45-4533-918D-4117BF9304D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{92FAA502-0F45-4533-918D-4117BF9304D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{92FAA502-0F45-4533-918D-4117BF9304D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

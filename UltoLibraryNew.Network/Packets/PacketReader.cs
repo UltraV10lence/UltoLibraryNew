@@ -45,27 +45,25 @@ public class PacketReader {
     private bool GetPacketMetadata(byte[] buffer, ref int offset, int count) {
         if (currentMetadata.HasValue) return true;
 
-        const int metadataSize = 7;
-        if (currentPacket.Position + (count - offset) >= metadataSize) {
-            var toSwap = (int) (metadataSize - currentPacket.Position);
-            if (toSwap > 0) {
-                currentPacket.Write(buffer, offset, toSwap);
-                offset += toSwap;
-            }
-
-            currentPacket.Seek(0, SeekOrigin.Begin);
-            using (var reader = new BinaryReader(currentPacket, Encoding.UTF8, true)) {
-                currentMetadata = new PacketMetadata {
-                    ChannelId = reader.ReadByte(),
-                    PacketLength = reader.ReadInt32(),
-                    DataType = reader.ReadInt16()
-                };
-                
-                currentPacket.Seek(0, SeekOrigin.Begin);
-                return true;
-            }
+        const int metadataSize = 6;
+        if (currentPacket.Position + (count - offset) < metadataSize) return false;
+        
+        var toSwap = (int) (metadataSize - currentPacket.Position);
+        if (toSwap > 0) {
+            currentPacket.Write(buffer, offset, toSwap);
+            offset += toSwap;
         }
 
-        return false;
+        currentPacket.Seek(0, SeekOrigin.Begin);
+        using (var reader = new BinaryReader(currentPacket, Encoding.UTF8, true)) {
+            currentMetadata = new PacketMetadata {
+                PacketLength = reader.ReadInt32(),
+                DataType = reader.ReadInt16()
+            };
+                
+            currentPacket.Seek(0, SeekOrigin.Begin);
+            return true;
+        }
+
     }
 }

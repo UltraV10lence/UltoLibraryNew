@@ -5,7 +5,6 @@ namespace UltoLibraryNew.Network.ConnectionInitializers;
 internal class ServerConnectionInitImpl : ServerConnectionInitializer {
     public readonly TcpServer Server;
     public readonly TcpConnection Connection;
-    public readonly List<TcpChannel> Channels = [];
 
     public string RemoteIp => Connection.RemoteIp;
     public ushort RemotePort => Connection.RemotePort;
@@ -22,11 +21,5 @@ internal class ServerConnectionInitImpl : ServerConnectionInitializer {
 
     ConnectionInitializer ConnectionInitializer.RegisterPackets(Action<PacketTypeIdentifier> identifier) {
         return RegisterPackets(identifier);
-    }
-
-    public TcpChannel RegisterChannel(string identifier) {
-        var channel = new TcpChannel(identifier, (byte) (Channels.Count + TcpConnection.SystemChannelsCount), Connection);
-        Channels.Add(channel);
-        return channel;
     }
 }

@@ -23,26 +23,28 @@ public class TcpClient {
 
     public void Connect() {
         Disconnect(DisconnectReason.Reconnect);
-        client = new System.Net.Sockets.TcpClient();
-        client.Connect(remoteEndpoint);
         closeTaskSource = new TaskCompletionSource();
 
-        NetworkStream stream;
         try {
-            stream = client.GetStream();
-        } catch {
-            Disconnect(DisconnectReason.StreamClosed);
-            return;
-        }
-        
-        Connection = new TcpConnection(remoteEndpoint.Address.ToString(), (ushort) remoteEndpoint.Port, stream, false);
-        var initializer = new ConnectionInitImpl(Connection, this);
-        OnConnectionInitialize(initializer);
-        Connection.Initialize(initializer);
-    }
+            client = new System.Net.Sockets.TcpClient();
 
-    internal void OnConnectDone(TcpConnection connection) {
-        OnConnect(connection);
+            NetworkStream stream;
+            try {
+                client.Connect(remoteEndpoint);
+                stream = client.GetStream();
+            } catch {
+                Disconnect(DisconnectReason.StreamClosed);
+                return;
+            }
+        
+            Connection = new TcpConnection(remoteEndpoint.Address.ToString(), (ushort) remoteEndpoint.Port, stream, false);
+            var initializer = new ConnectionInitImpl(Connection, this);
+            OnConnectionInitialize(initializer);
+            Connection.Initialize(initializer);
+            OnConnect(Connection);
+        } catch {
+            Disconnect(DisconnectReason.Exception);
+        }
     }
 
     public void Disconnect() {

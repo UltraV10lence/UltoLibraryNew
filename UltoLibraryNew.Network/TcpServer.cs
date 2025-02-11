@@ -31,8 +31,8 @@ public class TcpServer {
         void Callback(IAsyncResult result) {
             var client = listener.EndAcceptTcpClient(result);
             ConsumeClient();
-            
-            listener.BeginAcceptTcpClient(Callback, null);
+
+            listener?.BeginAcceptTcpClient(Callback, null);
             return;
 
             void ConsumeClient() {
@@ -54,9 +54,7 @@ public class TcpServer {
                     connection.Initialize(initializer);
                     connections.Add(connection);
                     OnConnect(connection);
-                } catch (Exception e) {
-                    Console.WriteLine(e);
-                }
+                } catch { }
             }
         }
     }

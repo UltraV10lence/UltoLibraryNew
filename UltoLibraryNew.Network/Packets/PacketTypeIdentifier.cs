@@ -14,23 +14,6 @@ public class PacketTypeIdentifier {
     }
 
     private void InitializeSystemPacketTypes() {
-        RegisterPacket<ChannelsInfoPacket>(-1, (buf, packet) => {
-            buf.Write7BitEncodedInt(packet.Channels.Count - TcpConnection.SystemChannelsCount);
-            foreach (var channel in packet.Channels) {
-                if (channel.Key < TcpConnection.SystemChannelsCount) continue;
-                buf.Write(channel.Key).Write(channel.Value);
-            }
-        }, buf => {
-            var channelsCount = buf.Read7BitEncodedInt();
-            var channels = new Dictionary<byte, string>(channelsCount);
-            while (channelsCount > 0) {
-                channels.Add(buf.ReadByte(), buf.ReadString());
-                channelsCount--;
-            }
-
-            return new ChannelsInfoPacket(channels);
-        }, true);
-        
         RegisterPacket<PingPacket>(-2, (_, _) => { }, _ => new PingPacket(), true);
     }
 
@@ -60,7 +43,7 @@ public class PacketTypeIdentifier {
         return registeredType.Key;
     }
 
-    public void Encode(Stream to, object obj, short fetchedId, TcpChannel channel) {
+    public void Encode(Stream to, object obj, short fetchedId, TcpConnection connection) {
         var registeredType = registeredTypes[fetchedId];
         
         using (var buffer = new ByteBuf()) {
@@ -69,13 +52,12 @@ public class PacketTypeIdentifier {
 
             try {
                 using (var writer = new BinaryWriter(to, Encoding.UTF8, true)) {
-                    writer.Write(channel.Id);
                     writer.Write((int) buffer.Length);
                     writer.Write(fetchedId);
                 }
                 buffer.CopyTo(to);
             } catch {
-                channel.Connection.Disconnect(DisconnectReason.StreamClosed);
+                connection.Disconnect(DisconnectReason.StreamClosed);
             }
         }
     }
